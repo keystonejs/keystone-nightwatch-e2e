@@ -1,6 +1,6 @@
 {
   "name": "keystone-nightwatch-e2e",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Nightwatch end-to-end testing framework for KeystoneJS applications",
   "main": "index.js",
   "repository": {
@@ -27,6 +27,8 @@
     "npm": ">= 3.0.0"
   },
   "dependencies": {
+    "i": "^0.3.5",
+    "lodash": "^4.15.0",
     "path": "^0.12.7"
   }
 }
