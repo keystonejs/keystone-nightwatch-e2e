@@ -1,4 +1,4 @@
-var dashboardGroup = require('./dashboardGroup');
+var dashboardGroup = require('./adminUIDashboardGroup');
 
 var accessdashboardGroup = dashboardGroup({
 	groupName: 'Access',

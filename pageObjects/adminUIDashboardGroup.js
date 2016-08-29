@@ -1,4 +1,4 @@
-var dashboardTab = require('./dashboardTab');
+var dashboardTab = require('./adminUIDashboardTab');
 
 module.exports = function dashboardGroup (config) {
 	var sections = {};
