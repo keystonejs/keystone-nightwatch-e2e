@@ -8,48 +8,63 @@ It is important that the Field Test Object adheres to the following format as th
 
 NOTE:  when calling commands in the Field Test Object, the test framework will first make sure the command is configured.  If not configured,
         it will log an quick message for the field and move on.
+NOTE:  fields should be selected on the context of their parent form.  Thus, the config.formSelector is matched along with the field selector.        
 
     module.exports = function FieldTestObject (config) {
+        
+        /*
+            This is a convenience function that returns fully qualified css field elements selectors.
+        */
         var selectElem = function(elem) {
-            return self.selector + ' ' + self.elements[elem];
+            return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
         };
+        
+        /*
+            We use self to keep a reference to the test object closure since function blocks may need to reference
+            closure properties.
+        */
         var self = {
             selector: '<THE-CSS-SELECTOR-FOR-THE-FIELD>',
             elements: {
-                <WHAT-EVER-CSS-OR-XPATH-ELEMENTS-FOR-THE-FIELD>
+                <WHAT-EVER-CSS-ELEMENTS-FOR-THE-FIELD>
             },
+            
+            /*
+                A Field Test Object can implement any of the following commands.  Commands that are not implemented will not
+                be called and thus cannot be tested.
+            */
             commands: {
-                assertUIVisible: function (browser, args) {
+                clickFieldUI: function (browser, elem) {
+                    /*
+                    THIS FUNCTION CLICKS THE SPECIFIED ELEM IN THE FIELD
+                    */
+                },
+                assertFieldUIVisible: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE UI FOR THIS FIELD IS VISIBLE AS IN THE USER CAN SEE IT
                     */
                 },
-                assertUINotVisible: function (browser, args) {
+                assertFieldUINotVisible: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE UI FOR THIS FIELD IS NOT VISIBLE AS IN THE USER CANNOT SEE IT
                     */
                 },
-                assertUIPresent: function (browser, args) {
+                assertFieldUIPresent: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE PRESENT IN THE DOM
                     */
                 },
-                assertUINotPresent: function (browser, args) {
+                assertFieldUINotPresent: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE NOT PRESENT IN THE DOM
                     */
                 },
-                showMoreFields: function (browser, args) {
-                    /*
-                    [OPTIONAL] THIS FUNCTION CONTROLS SHOWING MORE FIELDS IN THE UI FOR FIELDS THAT SUPPORT IT
-                    */
-                },
-                fillInput: function (browser, input) {
+                fillFieldInputs: function (browser, input) {
                     /*
                     THIS FUNCTION FILLS THE FIELD FORM WITH THE SPECIFIED INPUT
                     */
                 },
-                assertInput: function (browser, input) {
+                assertFieldInputs: function (browser, input) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE FIELD FORM IS FILLED WITH THE SPECIFIED INPUT
                     */

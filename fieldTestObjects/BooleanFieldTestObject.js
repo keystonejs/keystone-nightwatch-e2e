@@ -1,8 +1,8 @@
 var utils = require('../utils');
 
-module.exports = function BooleanField (config) {
+module.exports = function BooleanFieldTestObject (config) {
 	var selectElem = function(elem) {
-		return self.selector + ' ' + self.elements[elem];
+		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
 		selector: '[data-field-name=' + config.fieldName + '][data-field-type=boolean]',
@@ -12,10 +12,10 @@ module.exports = function BooleanField (config) {
 			value: 'label input[name="' + config.fieldName + '"]',
 		},
 		selectElem: function(elem) {
-			return self.selector + ' ' + self.elements[elem];
+			return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 		},
 		commands: {
-			assertUIVisible: function (browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -23,7 +23,7 @@ module.exports = function BooleanField (config) {
 				browser
 					.expect.element(selectElem('button')).to.be.visible;
 			},
-			assertUINotVisible: function (browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -31,26 +31,26 @@ module.exports = function BooleanField (config) {
 				browser
 					.expect.element(selectElem('button')).to.not.be.visible;
 			},
-			assertUIPresent: function (browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('button')).to.be.present;
 			},
-			assertUINotPresent: function (browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
 					.expect.element(selectElem('button')).to.not.be.present;
 			},
-			fillInput: function (browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.getValue(selectElem('value'), function (result) {
 						if (input.value !== result.value)
 							browser.click(selectElem('button'));
 					});
 			},
-			assertInput: function (browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.getValue(selectElem('value'), function (result) {
 						browser.api.assert.equal(result.value, input.value);

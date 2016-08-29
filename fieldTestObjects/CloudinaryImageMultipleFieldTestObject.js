@@ -1,8 +1,8 @@
 var utils = require('../utils');
 
-module.exports = function CloudinaryImageMultipleField(config) {
+module.exports = function CloudinaryImageMultipleFieldTestObject (config) {
 	var selectElem = function(elem) {
-		return self.selector + ' ' + self.elements[elem];
+		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self =  {
 		selector: '.field-type-cloudinaryimages[for="' + config.fieldName + '"]',
@@ -11,7 +11,7 @@ module.exports = function CloudinaryImageMultipleField(config) {
 			button: 'button[data-e2e-upload-button]',
 		},
 		commands: {
-			assertUIVisible: function(browser, args) {
+			assertFieldUIVisible: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -19,7 +19,7 @@ module.exports = function CloudinaryImageMultipleField(config) {
 				browser
 					.expect.element(selectElem('button')).to.be.visible;
 			},
-			assertUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -27,13 +27,13 @@ module.exports = function CloudinaryImageMultipleField(config) {
 				browser
 					.expect.element(selectElem('button')).to.not.be.visible;
 			},
-			assertUIPresent: function(browser, args) {
+			assertFieldUIPresent: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('button')).to.be.present;
 			},
-			assertUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser

@@ -1,60 +1,50 @@
 var utils = require('../utils');
 
-module.exports = function ColorField(config) {
+module.exports = function TextFieldTestObject (config) {
 	var selectElem = function(elem) {
-		return self.selector + ' ' + self.elements[elem];
+		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
-		selector: '.field-type-color[for="' + config.fieldName + '"]',
+		selector: '.field-type-text[for="' + config.fieldName + '"]',
 		elements: {
 			label: '.FormLabel',
 			value: 'input[name="' + config.fieldName + '"]',
-			button: '.e2e-type-color__button',
-			swatch: '.e2e-type-color__swatch',
 		},
 		commands: {
-			assertUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
 					.expect.element(selectElem('label')).text.to.equal(utils.titlecase(config.fieldName));
 				browser
 					.expect.element(selectElem('value')).to.be.visible;
-				browser
-					.expect.element(selectElem('button')).to.be.visible;
 			},
-			assertUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
 					.expect.element(selectElem('label')).text.to.equal(utils.titlecase(config.fieldName));
 				browser
 					.expect.element(selectElem('value')).to.not.be.visible;
-				browser
-					.expect.element(selectElem('button')).to.not.be.visible;
 			},
-			assertUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('value')).to.be.present;
-				browser
-					.expect.element(selectElem('button')).to.be.present;
 			},
-			assertUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
 					.expect.element(selectElem('value')).to.not.be.present;
-				browser
-					.expect.element(selectElem('button')).to.not.be.present;
 			},
-			fillInput: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('value'))
 					.setValue(selectElem('value'), input.value);
 			},
-			assertInput: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('value'));
 				browser
@@ -65,6 +55,5 @@ module.exports = function ColorField(config) {
 			},
 		},
 	};
-
 	return self;
 };

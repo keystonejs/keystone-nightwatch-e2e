@@ -1,8 +1,8 @@
 var utils = require('../utils');
 
-module.exports = function DateArrayField (config) {
+module.exports = function DateArrayFieldTestObject (config) {
 	var selectElem = function(elem) {
-		return self.selector + ' ' + self.elements[elem];
+		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
 		selector: '.field-type-datearray[for="' + config.fieldName + '"]',
@@ -15,7 +15,10 @@ module.exports = function DateArrayField (config) {
 			date2Delete: '.FormField:nth-of-type(2) .Button--link-cancel',
 		},
 		commands: {
-			assertUIVisible: function(browser, args) {
+			clickFieldUI: function (browser, elem) {
+				browser.click(selectElem(elem));
+			},
+			assertFieldUIVisible: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -31,7 +34,7 @@ module.exports = function DateArrayField (config) {
 					});
 				}
 			},
-			assertUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -47,7 +50,7 @@ module.exports = function DateArrayField (config) {
 					});
 				}
 			},
-			assertUIPresent: function(browser, args) {
+			assertFieldUIPresent: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -61,7 +64,7 @@ module.exports = function DateArrayField (config) {
 					});
 				}
 			},
-			assertUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function(browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -75,13 +78,7 @@ module.exports = function DateArrayField (config) {
 					});
 				}
 			},
-			clickUI: function(browser, ui) {
-				var clickables = Object.keys(ui);
-				clickables.forEach(function(clickable) {
-					browser.click(selectElem(ui[clickable]));
-				});
-			},
-			fillInput: function(browser, input) {
+			fillFieldInputs: function(browser, input) {
 				var dateInputs = Object.keys(input);
 				dateInputs.forEach(function(dateInput) {
 					browser
@@ -89,7 +86,7 @@ module.exports = function DateArrayField (config) {
 						.setValue(selectElem(dateInput), input[dateInput]);
 				});
 			},
-			assertInput: function(browser, input) {
+			assertFieldInputs: function(browser, input) {
 				var dateInputs = Object.keys(input);
 				dateInputs.forEach(function(dateInput) {
 					browser
