@@ -16,7 +16,7 @@
     "e2e",
     "end",
     "nightwatch",
-    "framework",
+    "framework"
   ],
   "readmeFilename": "README.md",
   "bugs": {
@@ -25,5 +25,8 @@
   "engines": {
     "node": ">= 0.12.0",
     "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
