@@ -33,31 +33,15 @@ module.exports = {
 		editableNameHeader: '.EditForm__name-field input[class*="item-name-field"',
 		idLabel: '.EditForm__key-or-id span[class="EditForm__key-or-id__label"]',
 		idValue: '.EditForm__key-or-id span[class="EditForm__key-or-id__field"]',
-		metaHeader: '.EditForm__meta h3[class="form-heading"]',
-		metaCreatedOnLabel: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][1]/label[contains(@class, "FormLabel")]',
-		},
-		metaCreatedOnValue: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][1]/div[contains(@class,"FormInput-noedit")]',
-		},
-		metaCreatedByLabel: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][2]/label[contains(@class, "FormLabel")]',
-		},
-		metaCreatedByValue: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][2]/div[contains(@class,"FormInput-noedit")]',
-		},
-		metaUpdatedByLabel: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][3]/label[contains(@class, "FormLabel")]',
-		},
-		metaUpdatedByValue: {
-			locateStrategy: 'xpath',
-			selector: '//div[contains(@class, "EditForm__meta")]/div[contains(@class, "FormField")][3]/div[contains(@class,"FormInput-noedit")]',
-		},
+		metaHeader: '.EditForm h3[class="form-heading"]',
+		metaCreatedAtLabel: '.EditForm .FormField[for="createdAt"] label[for="createdAt"]',
+		metaCreatedAtValue: '.EditForm .FormField[for="createdAt"] .FormInput-noedit',
+		metaCreatedByLabel: '.EditForm .FormField[for="createdBy"] label[for="createdBy"]',
+		metaCreatedByValue: '.EditForm .FormField[for="createdBy"] .FormInput-noedit',
+		metaUpdatedAtLabel: '.EditForm .FormField[for="updatedAt"] label[for="updatedAt"]',
+		metaUpdatedAtValue: '.EditForm .FormField[for="updatedAt"] .FormInput-noedit',
+		metaUpdatedByLabel: '.EditForm .FormField[for="updatedBy"] label[for="updatedBy"]',
+		metaUpdatedByValue: '.EditForm .FormField[for="updatedBy"] .FormInput-noedit',
 		saveButton: '.EditForm-container button[data-button=update]',
 		resetButton: '.EditForm-container button[data-button=reset]',
 		resetButtonText: '.EditForm-container button[data-button=reset] span',
@@ -69,107 +53,98 @@ module.exports = {
 		//
 		// PAGE LEVEL COMMANDS
 		//
-		assertUIVisible: function (config) {
+		assertFieldUIVisible: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return config.fields.forEach(function (field) {
 				var fieldTestObject = form.section['list'][field.name];
-				if (fieldTestObject.commands.hasOwnProperty('assertUIVisible')) {
-					form.section['list'][field.name].commands.assertUIVisible(browser, field.options);
+				if (fieldTestObject.commands.hasOwnProperty('assertFieldUIVisible')) {
+					form.section['list'][field.name].commands.assertFieldUIVisible(browser, field.options);
 				} else {
-					console.log('Not calling assertUIVisible() in ' + field.name + ' field test object -- function not defined');
+					console.log('***Item form not calling assertFieldUIVisible() in ' + field.name + ' field test object -- function not defined');
 				}
 			});
 		},
-		assertUINotVisible: function (config) {
+		assertFieldUINotVisible: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return config.fields.forEach(function (field) {
 				var fieldTestObject = form.section['list'][field.name];
-				if (fieldTestObject.commands.hasOwnProperty('assertUINotVisible')) {
-					form.section['list'][field.name].commands.assertUINotVisible(browser, field.options);
+				if (fieldTestObject.commands.hasOwnProperty('assertFieldUINotVisible')) {
+					form.section['list'][field.name].commands.assertFieldUINotVisible(browser, field.options);
 				} else {
-					console.log('Not calling assertUINotVisible() in ' + field.name + ' field test object -- function not defined');
+					console.log('***Item form not calling assertFieldUINotVisible() in ' + field.name + ' field test object -- function not defined');
 				}
 			});
 		},
-		assertUIPresent: function (config) {
+		assertFieldUIPresent: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return config.fields.forEach(function (field) {
 				var fieldTestObject = form.section['list'][field.name];
-				if (fieldTestObject.commands.hasOwnProperty('assertUIPresent')) {
-					form.section['list'][field.name].commands.assertUIPresent(browser, field.options);
+				if (fieldTestObject.commands.hasOwnProperty('assertFieldUIPresent')) {
+					form.section['list'][field.name].commands.assertFieldUIPresent(browser, field.options);
 				} else {
-					console.log('Not calling assertUIPresent() in ' + field.name + ' field test object -- function not defined');
+					console.log('***Item form not calling assertFieldUIPresent() in ' + field.name + ' field test object -- function not defined');
 				}
 			});
 		},
-		assertUINotPresent: function (config) {
+		assertFieldUINotPresent: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return config.fields.forEach(function (field) {
 				var fieldTestObject = form.section['list'][field.name];
-				if (fieldTestObject.commands.hasOwnProperty('assertUINotPresent')) {
-					form.section['list'][field.name].commands.assertUINotPresent(browser, field.options);
+				if (fieldTestObject.commands.hasOwnProperty('assertFieldUINotPresent')) {
+					form.section['list'][field.name].commands.assertFieldUINotPresent(browser, field.options);
 				} else {
-					console.log('Not calling assertUINotPresent() in ' + field.name + ' field test object -- function not defined');
+					console.log('***Item form not calling assertFieldUINotPresent() in ' + field.name + ' field test object -- function not defined');
 				}
 			});
 		},
-		showMoreFields: function (config) {
+		clickFieldUI: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
-			var browser = this;
-			return config.fields.forEach(function (field) {
-				var fieldTestObject = form.section['list'][field.name];
-				if (fieldTestObject.commands.hasOwnProperty('showMoreFields')) {
-					form.section['list'][field.name].commands.showMoreFields(browser, field.options);
-				} else {
-					console.log('Not calling showMoreFields() in ' + field.name + ' field test object -- function not defined');
-				}
-			});
-		},
-		clickUI: function (config) {
-			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return Object.keys(config.fields).forEach(function (field) {
 				var fieldTestObject = form.section['list'][field];
-				if (fieldTestObject.commands.hasOwnProperty('clickUI')) {
-					fieldTestObject.commands.clickUI(browser, config.fields[field]);
+				if (fieldTestObject.commands.hasOwnProperty('clickFieldUI')) {
+					if (config.fields[field].hasOwnProperty('click')) {
+						fieldTestObject.commands.clickFieldUI(browser, config.fields[field]['click']);
+					} else {
+						console.log('***Item form not calling clickFieldUI() in ' + field + ' field test object -- field missing click configuration in test');
+					}
 				} else {
-					console.log('Not calling clickUI() in ' + field + ' field test object -- function not defined');
+					console.log('***Item form not calling clickFieldUI() in ' + field + ' field test object -- function not defined');
 				}
 			});
 		},
-		fillInputs: function (config) {
+		fillFieldInputs: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return Object.keys(config.fields).forEach(function (field) {
 				var fieldTestObject = form.section['list'][field];
-				if (fieldTestObject.commands.hasOwnProperty('fillInput')) {
-					fieldTestObject.commands.fillInput(browser, config.fields[field]);
+				if (fieldTestObject.commands.hasOwnProperty('fillFieldInputs')) {
+					fieldTestObject.commands.fillFieldInputs(browser, config.fields[field]);
 				} else {
-					console.log('Not calling fillInput() in ' + field + ' field test object -- function not defined');
+					console.log('***Item form not calling fillFieldInputs() in ' + field + ' field test object -- function not defined');
 				}
 			});
 		},
-		assertInputs: function (config) {
+		assertFieldInputs: function (config) {
 			var form = this.section.form;
-			form.section['list'] = new config.modelTestConfig();
+			form.section['list'] = new config.modelTestConfig({formSelector: form.selector});
 			var browser = this;
 			return Object.keys(config.fields).forEach(function (field) {
 				var fieldTestObject = form.section['list'][field];
-				if (fieldTestObject.commands.hasOwnProperty('assertInput')) {
-					fieldTestObject.commands.assertInput(browser, config.fields[field]);
+				if (fieldTestObject.commands.hasOwnProperty('assertFieldInputs')) {
+					fieldTestObject.commands.assertFieldInputs(browser, config.fields[field]);
 				} else {
-					console.log('Not calling assertInput() in ' + field + ' field test object -- function not defined');
+					console.log('***Item form not calling assertFieldInputs() in ' + field + ' field test object -- function not defined');
 				}
 			});
 		},

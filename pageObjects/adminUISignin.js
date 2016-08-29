@@ -11,19 +11,19 @@ module.exports = {
 		},
 	},
 	commands: [{
-		signin: function () {
+		signin: function (user, password) {
 			return this
-				.setValue('@emailInput', 'user@test.e2e')
-				.setValue('@passwordInput', 'test')
+				.setValue('@emailInput', user || 'user@test.e2e')
+				.setValue('@passwordInput', password || 'test')
 				.click('@submitButton');
 		},
 		assertUI: function () {
 			this
 				.expect.element('@emailInput').to.be.visible;
 			this
-				.expect.element('@emailInput').to.be.visible;
+				.expect.element('@passwordInput').to.be.visible;
 			this
-				.expect.element('@emailInput').to.be.visible;
+				.expect.element('@submitButton').to.be.visible;
 			return this;
 		}
 	}],
