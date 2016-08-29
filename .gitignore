@@ -1,0 +1,17 @@
+*.dat
+*.DS_Store
+*.gz
+*.log
+*.out
+*.pid
+*.seed
+*.swp
+*.un~
+*.iml
+*.ipr
+*.iws
+.idea/
+*.sublime-*
+
+node_modules/
+npm-debug.log

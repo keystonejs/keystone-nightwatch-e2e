@@ -1,0 +1,29 @@
+{
+  "name": "keystone-nightwatch-e2e",
+  "version": "0.1.0",
+  "description": "Nightwatch end-to-end testing framework for KeystoneJS applications",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keystonejs/keystone-nightwatch-e2e.git"
+  },
+  "author": "Jed Watson, Max Stoiber, Carlos Colon, Jake Stockwin",
+  "homepage": "http://keystonejs.com/",
+  "license": "MIT",
+  "keywords": [
+    "keystone",
+    "keystonejs",
+    "e2e",
+    "end",
+    "nightwatch",
+    "framework",
+  ],
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/keystonejs/keystone-nightwatch-e2e/issues"
+  },
+  "engines": {
+    "node": ">= 0.12.0",
+    "npm": ">= 3.0.0"
+  }
+}
