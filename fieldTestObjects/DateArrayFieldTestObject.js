@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function DateArrayFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -18,7 +18,7 @@ module.exports = function DateArrayFieldTestObject (config) {
 			clickFieldUI: function (browser, elem) {
 				browser.click(selectElem(elem));
 			},
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -26,7 +26,7 @@ module.exports = function DateArrayFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('addButton')).to.be.visible;
 				if (args !== undefined && args.dateInputs !== undefined) {
-					args.dateInputs.forEach(function(dateInput) {
+					args.dateInputs.forEach(function (dateInput) {
 						browser
 							.expect.element(selectElem(dateInput)).to.be.visible;
 						browser
@@ -34,7 +34,7 @@ module.exports = function DateArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -42,7 +42,7 @@ module.exports = function DateArrayFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('addButton')).to.not.be.visible;
 				if (args !== undefined && args.dateInputs !== undefined) {
-					args.dateInputs.forEach(function(dateInput) {
+					args.dateInputs.forEach(function (dateInput) {
 						browser
 							.expect.element(selectElem(dateInput)).to.not.be.visible;
 						browser
@@ -50,13 +50,13 @@ module.exports = function DateArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('addButton')).to.be.present;
 				if (args !== undefined && args.dateInputs !== undefined) {
-					args.dateInputs.forEach(function(dateInput) {
+					args.dateInputs.forEach(function (dateInput) {
 						browser
 							.expect.element(selectElem(dateInput)).to.be.present;
 						browser
@@ -64,13 +64,13 @@ module.exports = function DateArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
 					.expect.element(selectElem('addButton')).to.not.be.present;
 				if (args !== undefined && args.dateInputs !== undefined) {
-					args.dateInputs.forEach(function(dateInput) {
+					args.dateInputs.forEach(function (dateInput) {
 						browser
 							.expect.element(selectElem(dateInput)).to.not.be.present;
 						browser
@@ -78,20 +78,20 @@ module.exports = function DateArrayFieldTestObject (config) {
 					});
 				}
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				var dateInputs = Object.keys(input);
-				dateInputs.forEach(function(dateInput) {
+				dateInputs.forEach(function (dateInput) {
 					browser
 						.clearValue(selectElem(dateInput))
 						.setValue(selectElem(dateInput), input[dateInput]);
 				});
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				var dateInputs = Object.keys(input);
-				dateInputs.forEach(function(dateInput) {
+				dateInputs.forEach(function (dateInput) {
 					browser
 						.getValue(selectElem(dateInput), function (result) {
-							browser.api.assert.equal(result.state, "success");
+							browser.api.assert.equal(result.state, 'success');
 							browser.api.assert.equal(result.value, input[dateInput]);
 						});
 				});

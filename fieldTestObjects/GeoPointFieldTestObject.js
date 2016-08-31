@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function GeoPointFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -12,7 +12,7 @@ module.exports = function GeoPointFieldTestObject (config) {
 			valueLng: 'input[name="' + config.fieldName + '[0]"][placeholder="Longitude"]',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -22,7 +22,7 @@ module.exports = function GeoPointFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('valueLng')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -32,7 +32,7 @@ module.exports = function GeoPointFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('valueLng')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -40,7 +40,7 @@ module.exports = function GeoPointFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('valueLng')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -48,7 +48,7 @@ module.exports = function GeoPointFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('valueLng')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('valueLat'))
 					.setValue(selectElem('valueLat'), input.lat);
@@ -56,21 +56,21 @@ module.exports = function GeoPointFieldTestObject (config) {
 					.clearValue(selectElem('valueLng'))
 					.setValue(selectElem('valueLng'), input.lng);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('valueLat'));
 				browser
 					.getValue(selectElem('valueLat'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.lat);
-					}.bind(browser));
+					});
 				browser
 					.waitForElementVisible(selectElem('valueLng'));
 				browser
 					.getValue(selectElem('valueLng'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.lng);
-					}.bind(browser));
+					});
 			},
 		},
 	};

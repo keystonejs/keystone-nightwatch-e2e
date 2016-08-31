@@ -1,6 +1,6 @@
 var utils = require('../utils');
 
-module.exports = function TextArrayFieldTestObject(config) {
+module.exports = function TextArrayFieldTestObject (config) {
 	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
@@ -77,7 +77,7 @@ module.exports = function TextArrayFieldTestObject(config) {
 				}
 			},
 			fillFieldInputs: function (browser, input) {
-				textInputs = Object.keys(input);
+				var textInputs = Object.keys(input);
 				textInputs.forEach(function (textInput) {
 					browser
 						.clearValue(selectElem(textInput))
@@ -85,11 +85,11 @@ module.exports = function TextArrayFieldTestObject(config) {
 				});
 			},
 			assertFieldInputs: function (browser, input) {
-				textInputs = Object.keys(input);
+				var textInputs = Object.keys(input);
 				textInputs.forEach(function (textInput) {
 					browser
 						.getValue(selectElem(textInput), function (result) {
-							browser.api.assert.equal(result.state, "success");
+							browser.api.assert.equal(result.state, 'success');
 							browser.api.assert.equal(result.value, input[textInput]);
 						});
 				});

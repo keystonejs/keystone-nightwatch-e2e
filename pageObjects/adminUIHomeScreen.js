@@ -3,26 +3,26 @@ var dashboardGroup = require('./adminUIDashboardGroup');
 var accessdashboardGroup = dashboardGroup({
 	groupName: 'Access',
 	tabs: [
-		{name: 'users', items: '2 Items'},
+		{ name: 'users', items: '2 Items' },
 	],
 });
 
 var fieldsdashboardGroup = dashboardGroup({
 	groupName: 'Fields',
 	tabs: [
-		{name: 'booleans', items: '0 Items'},
-		{name: 'codes', items: '0 Items'},
-		{name: 'emails', items: '0 Items'},
-		{name: 'names', items: '0 Items'},
-		{name: 'numbers', items: '0 Items'},
-		{name: 'selects', items: '0 Items'},
+		{ name: 'booleans', items: '0 Items' },
+		{ name: 'codes', items: '0 Items' },
+		{ name: 'emails', items: '0 Items' },
+		{ name: 'names', items: '0 Items' },
+		{ name: 'numbers', items: '0 Items' },
+		{ name: 'selects', items: '0 Items' },
 	],
 });
 
 var otherdashboardGroup = dashboardGroup({
 	groupName: 'Other',
 	tabs: [
-		{name: 'other-lists', items: '0 Items'},
+		{ name: 'other-lists', items: '0 Items' },
 	],
 });
 

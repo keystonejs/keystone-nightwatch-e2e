@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function KeyFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -11,7 +11,7 @@ module.exports = function KeyFieldTestObject (config) {
 			value: 'input[name="' + config.fieldName + '"]',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -19,7 +19,7 @@ module.exports = function KeyFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('value')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -27,31 +27,31 @@ module.exports = function KeyFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('value')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('value')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
 					.expect.element(selectElem('value')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('value'))
 					.setValue(selectElem('value'), input.value);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('value'));
 				browser
 					.getValue(selectElem('value'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.value);
-					}.bind(browser));
+					});
 			},
 		},
 	};

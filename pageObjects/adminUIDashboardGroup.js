@@ -13,7 +13,7 @@ module.exports = function dashboardGroup (config) {
 		},
 		sections: sections,
 		commands: [{
-			assertUI: function() {
+			assertUI: function () {
 				for (var tab in this.section) {
 					if (this.section.hasOwnProperty(tab)) {
 						this.section[tab].assertUI();
@@ -22,4 +22,4 @@ module.exports = function dashboardGroup (config) {
 			},
 		}],
 	};
-}
+};

@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function UrlFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -39,17 +39,17 @@ module.exports = function UrlFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('value')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('value'))
 					.setValue(selectElem('value'), input.value);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('value'));
 				browser
 					.getValue(selectElem('value'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.value);
 					});
 			},

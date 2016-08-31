@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function TextFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -49,7 +49,7 @@ module.exports = function TextFieldTestObject (config) {
 					.waitForElementVisible(selectElem('value'));
 				browser
 					.getValue(selectElem('value'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.value);
 					});
 			},

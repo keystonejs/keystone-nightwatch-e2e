@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function DatetimeFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -15,7 +15,7 @@ module.exports = function DatetimeFieldTestObject (config) {
 			timePlaceholder: 'input[placeholder="HH:MM:SS am/pm"]',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -31,7 +31,7 @@ module.exports = function DatetimeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('timePlaceholder')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -47,7 +47,7 @@ module.exports = function DatetimeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('timePlaceholder')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -61,7 +61,7 @@ module.exports = function DatetimeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('timePlaceholder')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -75,20 +75,20 @@ module.exports = function DatetimeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('timePlaceholder')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('date'))
 					.setValue(selectElem('date'), input.date)
 					.clearValue(selectElem('time'))
 					.setValue(selectElem('time'), input.time);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
-					.getValue(selectElem('date'), function(result) {
+					.getValue(selectElem('date'), function (result) {
 						browser.api.assert.equal(result.value, input.date);
 					});
 				browser
-					.getValue(selectElem('time'), function(result) {
+					.getValue(selectElem('time'), function (result) {
 						browser.api.assert.equal(result.value, input.time);
 					});
 			},

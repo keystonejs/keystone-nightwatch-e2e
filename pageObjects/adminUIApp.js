@@ -68,56 +68,56 @@ module.exports = {
 		targetrelationshipListSubmenu: '.secondary-navbar [data-list-path="target-relationships"]',
 	},
 	commands: [{
-		gotoHomeScreen: function() {
+		gotoHomeScreen: function () {
 			return this
 				.navigate();		// navigate to the configure Url
 		},
-		openList: function(config) {
+		openList: function (config) {
 			return this.clickPrimaryNavbar(config.section)
 				.waitForListScreen()
 				.clickSecondaryNavbar(config.list)
 				.waitForListScreen();
 		},
-		clickPrimaryNavbar: function(key) {
+		clickPrimaryNavbar: function (key) {
 			var label = utils.keyToLabel(key);
 			return this.click('.primary-navbar__item[data-section-label="' + label + '"]');
 		},
-		clickSecondaryNavbar: function(key) {
+		clickSecondaryNavbar: function (key) {
 			var path = utils.keyToPath(key, true);
 			return this.click('.secondary-navbar li[data-list-path="' + path + '"]');
 		},
-		signout: function() {
+		signout: function () {
 			this.api.pause(500);
 			return this
 				.waitForElementVisible('@logoutIcon')
 				.click('@logoutIconLink')
 				.waitForSigninScreen();
 		},
-		waitForSigninScreen: function(timeout) {
+		waitForSigninScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@signinScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForHomeScreen: function(timeout) {
+		waitForHomeScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@homeScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForInitialFormScreen: function(timeout) {
+		waitForInitialFormScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@initialFormScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForDeleteConfirmationScreen: function(timeout) {
+		waitForDeleteConfirmationScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@deleteConfirmationScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForResetConfirmationScreen: function(timeout) {
+		waitForResetConfirmationScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@resetConfirmationScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForListScreen: function(timeout) {
+		waitForListScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@listScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},
-		waitForItemScreen: function(timeout) {
+		waitForItemScreen: function (timeout) {
 			return this
 				.waitForElementVisible('@itemScreen', timeout || this.api.globals.waitForConditionTimeout);
 		},

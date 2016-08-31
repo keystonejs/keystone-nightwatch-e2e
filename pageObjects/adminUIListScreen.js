@@ -1,6 +1,6 @@
 module.exports = {
 	elements: {
-		noItemsFoundNoText:'.BlankState__heading',
+		noItemsFoundNoText: '.BlankState__heading',
 		singleItemDeleteIcon: '.ItemList__control--delete',
 		firstItemDeleteIcon: {
 			locateStrategy: 'xpath',
@@ -98,13 +98,13 @@ module.exports = {
 			return this
 				.click(selector);
 		},
-		createFirstItem: function() {
+		createFirstItem: function () {
 			return this
 				.click('@createFirstItemButton');
 		},
-		navigateToFirstItem: function() {
+		navigateToFirstItem: function () {
 			return this
 				.click('@firstItemLink');
-		}
+		},
 	}],
 };

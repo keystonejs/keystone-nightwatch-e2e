@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function CodeFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -12,7 +12,7 @@ module.exports = function CodeFieldTestObject (config) {
 			codeMirror: '.CodeMirror-container',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -24,7 +24,7 @@ module.exports = function CodeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('codeMirror')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -36,7 +36,7 @@ module.exports = function CodeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('codeMirror')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -46,7 +46,7 @@ module.exports = function CodeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('codeMirror')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -56,7 +56,7 @@ module.exports = function CodeFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('codeMirror')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser.api
 					.execute(function (selector, input) {
 						var x = document.querySelector(selector);
@@ -64,12 +64,12 @@ module.exports = function CodeFieldTestObject (config) {
 						y.CodeMirror.setValue(input.value);
 					}, [self.selector, input]);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser.api
 					.execute(function (selector) {
-						 var x = document.querySelector(selector);
-						 var y = x.getElementsByClassName('CodeMirror')[0];
-						 return y.CodeMirror.getValue();
+						var x = document.querySelector(selector);
+						var y = x.getElementsByClassName('CodeMirror')[0];
+						return y.CodeMirror.getValue();
 					}, [self.selector], function (result) {
 						browser.assert.equal(result.value, input.value);
 					});

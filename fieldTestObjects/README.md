@@ -15,7 +15,7 @@ NOTE:  fields should be selected on the context of their parent form.  Thus, the
         /*
             This is a convenience function that returns fully qualified css field elements selectors.
         */
-        var selectElem = function(elem) {
+        var selectElem = function (elem) {
             return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
         };
         

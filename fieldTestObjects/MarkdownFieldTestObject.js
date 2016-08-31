@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function MarkdownFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -22,14 +22,14 @@ module.exports = function MarkdownFieldTestObject (config) {
 			quote: 'button[title="Quote"]',
 			code: 'button[title="Code"]',
 			previewToggle: 'button[title="Preview"]',
-			preview: '.md-editor__preview'
+			preview: '.md-editor__preview',
 		},
 		commands: {
 			clickFieldUI: function (browser, elem) {
 				console.log('******' + JSON.stringify(elem));
 				browser.click(selectElem(elem));
 			},
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -63,7 +63,7 @@ module.exports = function MarkdownFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('previewToggle')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -97,7 +97,7 @@ module.exports = function MarkdownFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('previewToggle')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -129,7 +129,7 @@ module.exports = function MarkdownFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('previewToggle')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -161,24 +161,24 @@ module.exports = function MarkdownFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('previewToggle')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('value'))
 					.setValue(selectElem('value'), input.md);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				if (input.md !== undefined) {
 					browser
 						.waitForElementVisible(selectElem('value'))
 						.getValue(selectElem('value'), function (result) {
-							browser.api.assert.equal(result.state, "success");
+							browser.api.assert.equal(result.state, 'success');
 							browser.api.assert.equal(result.value, input.md);
 						});
 				} else if (input.html !== undefined) {
 					browser.api
 						.execute(function (selector) {
 							var x = document.querySelector(selector);
-							return  x.innerHTML;
+							return x.innerHTML;
 						}, [self.elements.preview], function (result) {
 							browser.assert.equal(result.value, input.html);
 						});

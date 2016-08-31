@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function SelectFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -15,7 +15,7 @@ module.exports = function SelectFieldTestObject (config) {
 			optionOne: '.Select-menu-outer option[value="One"]',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -30,7 +30,7 @@ module.exports = function SelectFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('dropdownArrow')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -45,7 +45,7 @@ module.exports = function SelectFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('dropdownArrow')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -58,7 +58,7 @@ module.exports = function SelectFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('dropdownArrow')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -71,12 +71,12 @@ module.exports = function SelectFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('dropdownArrow')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.click(selectElem('selectField'))
 					.api.keys([input.value, browser.api.Keys.ENTER]);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.expect.element(selectElem('selectValue'))
 					.text.to.equals(input.value);

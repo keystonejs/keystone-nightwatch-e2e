@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function LocationFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -38,7 +38,7 @@ module.exports = function LocationFieldTestObject (config) {
 			clickFieldUI: function (browser, elem) {
 				browser.click(selectElem(elem));
 			},
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -54,7 +54,7 @@ module.exports = function LocationFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('street1Value')).to.be.visible;
 				browser
-					.expect.element(selectElem('street1Label')).text.to.equal("Street Address");
+					.expect.element(selectElem('street1Label')).text.to.equal('Street Address');
 				browser
 					.expect.element(selectElem('suburbStateField')).to.be.visible;
 				browser
@@ -64,7 +64,7 @@ module.exports = function LocationFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('stateValue')).to.be.visible;
 				browser
-					.expect.element(selectElem('suburbLabel')).text.to.equal("Suburb / State");
+					.expect.element(selectElem('suburbLabel')).text.to.equal('Suburb / State');
 				browser
 					.expect.element(selectElem('postcodeCountryField')).to.be.visible;
 				browser
@@ -74,7 +74,7 @@ module.exports = function LocationFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('postcodeValue')).to.be.visible;
 				browser
-					.expect.element(selectElem('postcodeLabel')).text.to.equal("Postcode / Country");
+					.expect.element(selectElem('postcodeLabel')).text.to.equal('Postcode / Country');
 				if (args.showMore) {
 					browser
 						.expect.element(selectElem('numberField')).to.be.visible;
@@ -83,7 +83,7 @@ module.exports = function LocationFieldTestObject (config) {
 					browser
 						.expect.element(selectElem('numberValue')).to.be.visible;
 					browser
-						.expect.element(selectElem('numberLabel')).text.to.equal("PO Box / Shop");
+						.expect.element(selectElem('numberLabel')).text.to.equal('PO Box / Shop');
 					browser
 						.expect.element(selectElem('nameField')).to.be.visible;
 					browser
@@ -91,7 +91,7 @@ module.exports = function LocationFieldTestObject (config) {
 					browser
 						.expect.element(selectElem('nameValue')).to.be.visible;
 					browser
-						.expect.element(selectElem('nameLabel')).text.to.equal("Building Name");
+						.expect.element(selectElem('nameLabel')).text.to.equal('Building Name');
 					browser
 						.expect.element(selectElem('street2Field')).to.be.visible;
 					browser
@@ -99,7 +99,7 @@ module.exports = function LocationFieldTestObject (config) {
 					browser
 						.expect.element(selectElem('street2Value')).to.be.visible;
 					browser
-						.expect.element(selectElem('street2Label')).text.to.equal("Street Address 2");
+						.expect.element(selectElem('street2Label')).text.to.equal('Street Address 2');
 					browser
 						.expect.element(selectElem('geoField')).to.be.visible;
 					browser
@@ -109,10 +109,10 @@ module.exports = function LocationFieldTestObject (config) {
 					browser
 						.expect.element(selectElem('geoLngValue')).to.be.visible;
 					browser
-						.expect.element(selectElem('geoLabel')).text.to.equal("Lat / Lng");
+						.expect.element(selectElem('geoLabel')).text.to.equal('Lat / Lng');
 				}
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				if (!args.showMore) {
@@ -170,7 +170,7 @@ module.exports = function LocationFieldTestObject (config) {
 						.expect.element(selectElem('geoLngValue')).to.not.be.visible;
 				}
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				if (!args.showMore) {
@@ -228,7 +228,7 @@ module.exports = function LocationFieldTestObject (config) {
 						.expect.element(selectElem('geoLngValue')).to.be.present;
 				}
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				if (!args.showMore) {
@@ -286,13 +286,13 @@ module.exports = function LocationFieldTestObject (config) {
 						.expect.element(selectElem('geoLngValue')).to.not.be.present;
 				}
 			},
-			showMoreFields: function(browser, input) {
+			showMoreFields: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('showMore'))
 					.click(selectElem('showMore'))
 					.waitForElementVisible(selectElem('numberField'));
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('numberValue'))
 					.setValue(selectElem('numberValue'), input.number);
@@ -324,75 +324,75 @@ module.exports = function LocationFieldTestObject (config) {
 					.clearValue(selectElem('geoLngValue'))
 					.setValue(selectElem('geoLngValue'), input.geoLng);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
 					.waitForElementVisible(selectElem('numberValue'));
 				browser
 					.getValue(selectElem('numberValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.number);
 					});
 				browser
 					.waitForElementVisible(selectElem('nameValue'));
 				browser
 					.getValue(selectElem('nameValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.name);
 					});
 				browser
 					.waitForElementVisible(selectElem('street1Value'));
 				browser
 					.getValue(selectElem('street1Value'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.street1);
 					});
 				browser
 					.waitForElementVisible(selectElem('street2Value'));
 				browser
 					.getValue(selectElem('street2Value'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.street2);
 					});
 				browser
 					.waitForElementVisible(selectElem('suburbValue'));
 				browser
 					.getValue(selectElem('suburbValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.suburb);
 					});
 				browser
 					.waitForElementVisible(selectElem('stateValue'));
 				browser
 					.getValue(selectElem('stateValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.state);
 					});
 				browser
 					.waitForElementVisible(selectElem('postcodeValue'));
 				browser
 					.getValue(selectElem('postcodeValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.postcode);
 					});
 				browser
 					.waitForElementVisible(selectElem('countryValue'));
 				browser
 					.getValue(selectElem('countryValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.country);
 					});
 				browser
 					.waitForElementVisible(selectElem('geoLatValue'));
 				browser
 					.getValue(selectElem('geoLatValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.geoLat);
 					});
 				browser
 					.waitForElementVisible(selectElem('geoLngValue'));
 				browser
 					.getValue(selectElem('geoLngValue'), function (result) {
-						browser.api.assert.equal(result.state, "success");
+						browser.api.assert.equal(result.state, 'success');
 						browser.api.assert.equal(result.value, input.geoLng);
 					});
 			},

@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function NameFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -14,7 +14,7 @@ module.exports = function NameFieldTestObject (config) {
 			lastNamePlaceholder: 'input[placeholder="Last name"]',
 		},
 		commands: {
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -28,7 +28,7 @@ module.exports = function NameFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('lastNamePlaceholder')).to.be.visible;
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
@@ -42,7 +42,7 @@ module.exports = function NameFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('lastNamePlaceholder')).to.not.be.visible;
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
@@ -54,7 +54,7 @@ module.exports = function NameFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('lastNamePlaceholder')).to.be.present;
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
@@ -66,20 +66,20 @@ module.exports = function NameFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('lastNamePlaceholder')).to.not.be.present;
 			},
-			fillFieldInputs: function(browser, input) {
+			fillFieldInputs: function (browser, input) {
 				browser
 					.clearValue(selectElem('firstName'))
 					.setValue(selectElem('firstName'), input.firstName)
 					.clearValue(selectElem('lastName'))
 					.setValue(selectElem('lastName'), input.lastName);
 			},
-			assertFieldInputs: function(browser, input) {
+			assertFieldInputs: function (browser, input) {
 				browser
-					.getValue(selectElem('firstName'), function(result) {
+					.getValue(selectElem('firstName'), function (result) {
 						browser.api.assert.equal(result.value, input.firstName);
 					});
 				browser
-					.getValue(selectElem('lastName'), function(result) {
+					.getValue(selectElem('lastName'), function (result) {
 						browser.api.assert.equal(result.value, input.lastName);
 					});
 			},

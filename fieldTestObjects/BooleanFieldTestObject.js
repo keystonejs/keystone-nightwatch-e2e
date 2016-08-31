@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function BooleanFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -11,7 +11,7 @@ module.exports = function BooleanFieldTestObject (config) {
 			label: 'span',
 			value: 'label input[name="' + config.fieldName + '"]',
 		},
-		selectElem: function(elem) {
+		selectElem: function (elem) {
 			return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 		},
 		commands: {
@@ -46,8 +46,9 @@ module.exports = function BooleanFieldTestObject (config) {
 			fillFieldInputs: function (browser, input) {
 				browser
 					.getValue(selectElem('value'), function (result) {
-						if (input.value !== result.value)
+						if (input.value !== result.value) {
 							browser.click(selectElem('button'));
+						}
 					});
 			},
 			assertFieldInputs: function (browser, input) {

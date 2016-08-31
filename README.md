@@ -208,7 +208,7 @@ Here are some don'ts that may cross your mind as good ideas but shouldn't:
     example, the initial modal form may only show fields that the user marked as _initial_ when defining the keystone
     list.
 
-        assertUI: function() {
+        assertUI: function () {
             this.expect.section('@name').to.be.visible;
             this.expect.section('@fieldA').to.be.visible;
         }

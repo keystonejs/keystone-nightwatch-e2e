@@ -1,7 +1,7 @@
 var utils = require('../utils');
 
 module.exports = function NumberArrayFieldTestObject (config) {
-	var selectElem = function(elem) {
+	var selectElem = function (elem) {
 		return config.formSelector + ' ' + self.selector + ' ' + self.elements[elem];
 	};
 	var self = {
@@ -18,7 +18,7 @@ module.exports = function NumberArrayFieldTestObject (config) {
 			clickFieldUI: function (browser, elem) {
 				browser.click(selectElem(elem));
 			},
-			assertFieldUIVisible: function(browser, args) {
+			assertFieldUIVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.visible;
 				browser
@@ -26,7 +26,7 @@ module.exports = function NumberArrayFieldTestObject (config) {
 				browser
 					.expect.element(selectElem('addButton')).to.be.visible;
 				if (args !== undefined && args.numberInputs !== undefined) {
-					args.numberInputs.forEach(function(numberInput) {
+					args.numberInputs.forEach(function (numberInput) {
 						browser
 							.expect.element(selectElem(numberInput)).to.be.visible;
 						browser
@@ -34,13 +34,13 @@ module.exports = function NumberArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUINotVisible: function(browser, args) {
+			assertFieldUINotVisible: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.visible;
 				browser
 					.expect.element(selectElem('addButton')).to.not.be.visible;
 				if (args !== undefined && args.numberInputs !== undefined) {
-					args.numberInputs.forEach(function(numberInput) {
+					args.numberInputs.forEach(function (numberInput) {
 						browser
 							.expect.element(selectElem(numberInput)).to.not.be.visible;
 						browser
@@ -48,13 +48,13 @@ module.exports = function NumberArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUIPresent: function(browser, args) {
+			assertFieldUIPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.be.present;
 				browser
 					.expect.element(selectElem('addButton')).to.be.present;
 				if (args !== undefined && args.numberInputs !== undefined) {
-					args.numberInputs.forEach(function(numberInput) {
+					args.numberInputs.forEach(function (numberInput) {
 						browser
 							.expect.element(selectElem(numberInput)).to.be.present;
 						browser
@@ -62,13 +62,13 @@ module.exports = function NumberArrayFieldTestObject (config) {
 					});
 				}
 			},
-			assertFieldUINotPresent: function(browser, args) {
+			assertFieldUINotPresent: function (browser, args) {
 				browser
 					.expect.element(selectElem('label')).to.not.be.present;
 				browser
 					.expect.element(selectElem('addButton')).to.not.be.present;
 				if (args !== undefined && args.numberInputs !== undefined) {
-					args.numberInputs.forEach(function(numberInput) {
+					args.numberInputs.forEach(function (numberInput) {
 						browser
 							.expect.element(selectElem(numberInput)).to.not.be.present;
 						browser
@@ -76,20 +76,20 @@ module.exports = function NumberArrayFieldTestObject (config) {
 					});
 				}
 			},
-			fillFieldInputs: function(browser, input) {
-				numberInputs = Object.keys(input);
-				numberInputs.forEach(function(numberInput) {
+			fillFieldInputs: function (browser, input) {
+				var numberInputs = Object.keys(input);
+				numberInputs.forEach(function (numberInput) {
 					browser
 						.clearValue(selectElem(numberInput))
 						.setValue(selectElem(numberInput), input[numberInput]);
 				});
 			},
-			assertFieldInputs: function(browser, input) {
-				numberInputs = Object.keys(input);
-				numberInputs.forEach(function(numberInput) {
+			assertFieldInputs: function (browser, input) {
+				var numberInputs = Object.keys(input);
+				numberInputs.forEach(function (numberInput) {
 					browser
 						.getValue(selectElem(numberInput), function (result) {
-							browser.api.assert.equal(result.state, "success");
+							browser.api.assert.equal(result.state, 'success');
 							browser.api.assert.equal(result.value, input[numberInput]);
 						});
 				});

@@ -25,6 +25,6 @@ module.exports = {
 			this
 				.expect.element('@submitButton').to.be.visible;
 			return this;
-		}
+		},
 	}],
 };
