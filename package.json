@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "i": "^0.3.5",
+    "keystone-utils": "^0.4.0",
     "lodash": "^4.15.0",
     "path": "^0.12.7"
   }

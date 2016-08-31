@@ -3,6 +3,8 @@
 	most likely available in all pages.
  */
 
+var utils = require('keystone-utils');
+
 
 module.exports = {
 	pause: 1000,
@@ -70,21 +72,19 @@ module.exports = {
 			return this
 				.navigate();		// navigate to the configure Url
 		},
-		openMiscList: function(list) {
-			var list = list.toLowerCase() + 'List';
-			var listSubmenu = '@' + list + 'Submenu';
-			return this.click('@miscListsMenu')
+		openList: function(config) {
+			return this.clickPrimaryNavbar(config.section)
 				.waitForListScreen()
-				.click(listSubmenu)
+				.clickSecondaryNavbar(config.list)
 				.waitForListScreen();
 		},
-		openFieldList: function(field) {
-				var list = field.toLowerCase() + 'List';
-				var listSubmenu = '@' + list + 'Submenu';
-				return this.click('@fieldListsMenu')
-					.waitForListScreen()
-					.click(listSubmenu)
-					.waitForListScreen();
+		clickPrimaryNavbar: function(key) {
+			var label = utils.keyToLabel(key);
+			return this.click('.primary-navbar__item[data-section-label="' + label + '"]');
+		},
+		clickSecondaryNavbar: function(key) {
+			var path = utils.keyToPath(key, true);
+			return this.click('.secondary-navbar li[data-list-path="' + path + '"]');
 		},
 		signout: function() {
 			this.api.pause(500);
