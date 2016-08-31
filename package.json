@@ -31,5 +31,13 @@
     "keystone-utils": "^0.4.0",
     "lodash": "^4.15.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-keystone": "^2.4.0",
+    "eslint-plugin-react": "^6.2.0"
+  },
+  "scripts": {
+    "lint": "eslint ."
   }
 }
