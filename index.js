@@ -4,7 +4,6 @@ var moment = require('moment');
 var Nightwatch = require('nightwatch/lib/index.js');
 var child_process = require('child_process');
 var selenium = require('selenium-server-standalone-jar');
-var keystone = null;
 var selenium_proc = null;
 
 /*
@@ -16,25 +15,25 @@ https://github.com/nightwatchjs/nightwatch/issues/470
 function runSeleniumInBackground (done) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: starting selenium server in background...');
 	selenium_proc = child_process.spawn('java',
-	[
-		'-jar', selenium.path
-	],
-	{
-		stdio: ['ignore', 'pipe', 'pipe']
-	});
+		[
+			'-jar', selenium.path,
+		],
+		{
+			stdio: ['ignore', 'pipe', 'pipe'],
+		});
 	var running = false;
 
 	selenium_proc.stderr.on('data', function (buffer)
 	{
-	  var line = buffer.toString();
-	  if(line.search(/Selenium Server is up and running/g) != -1) {
+		var line = buffer.toString();
+		if (line.search(/Selenium Server is up and running/g) !== -1) {
 			running = true;
 			done();
-	  }
+		}
 	});
 
 	selenium_proc.on('close', function (code) {
-		if(!running) {
+		if (!running) {
 			done(new Error('Selenium exited with error code ' + code));
 		}
 	});
@@ -54,20 +53,20 @@ function runNightwatch (done) {
 	} catch (ex) {
 		console.error('\nThere was an error while starting the nightwatch test runner:\n\n');
 		process.stderr.write(ex.stack + '\n');
-		done("failed to run nightwatch!");
+		done('failed to run nightwatch!');
 	}
 }
 
 /*
 	Function that starts the nightwatch-based e2e framework service
-	
+
 	options:
 	{
 		keystone: <keystone instance>,		// REQUIRED
 		runSelenium: [ true | false ]		// DEFAULTS TO FALSE
 	}
 */
-function start(options, callback) {
+function start (options, callback) {
 	var runSelenium = options.runSelenium || false;
 
 	// add the keystone instance to the module exports so that the keystone-nightwatch-e2e library may use it
@@ -77,7 +76,7 @@ function start(options, callback) {
 
 		function (cb) {
 			if (runSelenium) {
-				runSeleniumInBackground(cb)
+				runSeleniumInBackground(cb);
 			} else {
 				cb();
 			}
@@ -85,9 +84,9 @@ function start(options, callback) {
 
 		function (cb) {
 			runNightwatch(cb);
-		}
+		},
 
-	], function(err) {
+	], function (err) {
 		if (err) {
 			console.error([moment().format('HH:mm:ss:SSS')] + ' e2e: ' + err);
 		}
