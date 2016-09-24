@@ -49,12 +49,12 @@ NOTE:  fields should be selected on the context of their parent form.  Thus, the
                     THIS FUNCTION ASSERTS THAT THE UI FOR THIS FIELD IS NOT VISIBLE AS IN THE USER CANNOT SEE IT
                     */
                 },
-                assertFieldUIPresent: function (browser, args) {
+                assertFieldDOMPresent: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE PRESENT IN THE DOM
                     */
                 },
-                assertFieldUINotPresent: function (browser, args) {
+                assertFieldDOMNotPresent: function (browser, args) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE NOT PRESENT IN THE DOM
                     */
