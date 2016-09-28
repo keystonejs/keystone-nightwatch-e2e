@@ -39,32 +39,32 @@ NOTE:  fields should be selected on the context of their parent form.  Thus, the
                     THIS FUNCTION CLICKS THE SPECIFIED ELEM IN THE FIELD
                     */
                 },
-                assertFieldUIVisible: function (browser, args) {
+                assertFieldUIVisible: function (browser, options) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE UI FOR THIS FIELD IS VISIBLE AS IN THE USER CAN SEE IT
                     */
                 },
-                assertFieldUINotVisible: function (browser, args) {
+                assertFieldUINotVisible: function (browser, options) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE UI FOR THIS FIELD IS NOT VISIBLE AS IN THE USER CANNOT SEE IT
                     */
                 },
-                assertFieldDOMPresent: function (browser, args) {
+                assertFieldDOMPresent: function (browser, options) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE PRESENT IN THE DOM
                     */
                 },
-                assertFieldDOMNotPresent: function (browser, args) {
+                assertFieldDOMNotPresent: function (browser, options) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE ELEMENTS FOR THIS FIELD ARE NOT PRESENT IN THE DOM
                     */
                 },
-                fillFieldInputs: function (browser, input) {
+                fillFieldInputs: function (browser, input, options) {
                     /*
                     THIS FUNCTION FILLS THE FIELD FORM WITH THE SPECIFIED INPUT
                     */
                 },
-                assertFieldInputs: function (browser, input) {
+                assertFieldInputs: function (browser, input, options) {
                     /*
                     THIS FUNCTION ASSERTS THAT THE FIELD FORM IS FILLED WITH THE SPECIFIED INPUT
                     */
