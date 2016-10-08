@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: adminUIHomeScreen.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: adminUIHomeScreen.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var dashboardGroup = require('./adminUIDashboardGroup');
+
+var accessdashboardGroup = dashboardGroup({
+	groupName: 'Access',
+	tabs: [
+		{ name: 'users', items: '2 Items' },
+	],
+});
+
+var fieldsdashboardGroup = dashboardGroup({
+	groupName: 'Fields',
+	tabs: [
+		{ name: 'booleans', items: '0 Items' },
+		{ name: 'codes', items: '0 Items' },
+		{ name: 'emails', items: '0 Items' },
+		{ name: 'names', items: '0 Items' },
+		{ name: 'numbers', items: '0 Items' },
+		{ name: 'selects', items: '0 Items' },
+	],
+});
+
+var otherdashboardGroup = dashboardGroup({
+	groupName: 'Other',
+	tabs: [
+		{ name: 'other-lists', items: '0 Items' },
+	],
+});
+
+module.exports = {
+	commands: [{
+		/**
+		 * Asserts that the specified list screen element UI is visible.
+		 *
+		 * @param {string} element The element whose UI should be visible.
+		 */
+		assertElementIsVisible: function (element) {
+			return this.expect.element('@' + element).to.be.visible;
+		},
+
+		/**
+		 * Asserts that the specified list screen element UI is not visible.
+		 *
+		 * @param {string} element The element whose UI should not be visible.
+		 */
+		assertElementIsNotVisible: function (element) {
+			return this.expect.element('@' + element).to.not.be.visible;
+		},
+
+		/**
+		 * Asserts that the specified list screen element DOM is present.
+		 *
+		 * @param {string} element The element whose DOM should be present.
+		 */
+		assertElementIsPresent: function (element) {
+			return this.expect.element('@' + element).to.be.present;
+		},
+
+		/**
+		 * Asserts that the specified list screen element DOM is not present.
+		 *
+		 * @param {string} element The element whose DOM should not be present.
+		 */
+		assertElementIsNotPresent: function (element) {
+			return this.expect.element('@' + element).to.not.be.present;
+		},
+
+		/**
+		 * Asserts that the specified list screen element text equals the specified value.
+		 *
+		 * @param {string} element The element whose text should be compared to the input text.
+		 * @param {String} text The text to compare against.
+		 */
+		assertElementTextEquals: function (element, text) {
+			return this.expect.element('@' + element).text.to.equal(text);
+		},
+
+		/**
+		 * Asserts that the specified list screen element text not equals the specified value.
+		 *
+		 * @param {string} element The element whose text should be compared to the input text.
+		 * @param {String} text The text to compare against.
+		 */
+		assertElementTextNotEquals: function (element, text) {
+			return this.expect.element('@' + element).text.to.not.equal(text);
+		},
+
+		/**
+		 * Asserts that the specified list screen element text contains the specified value.
+		 *
+		 * @param {string} element The element whose text should contain the input text.
+		 * @param {String} text The text to compare against.
+		 */
+		assertElementTextContains: function (element, text) {
+			return this.expect.element('@' + element).text.to.contain(text);
+		},
+
+		/**
+		 * Asserts that the specified app screen element has the specified attribute.
+		 *
+		 * @param {string} element The element whose UI should be visible.
+		 * @param {string} attribute The attribute that should be present in the element.
+		 * @param {string} value The value that the attribute should have.
+		 */
+		assertElementHasAttribute: function (element, attribute, value) {
+			return this.expect.element('@' + element).to.have.attribute(attribute).which.contains(value);
+		},
+	}],
+	elements: {
+		dashboardHeader: '.dashboard-heading',
+	},
+	sections: {
+		accessGroup: accessdashboardGroup,
+		fieldsGroup: fieldsdashboardGroup,
+		otherGroup: otherdashboardGroup,
+	},
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-adminUIInitialForm.html">adminUIInitialForm</a></li><li><a href="module-adminUIItemScreen.html">adminUIItemScreen</a></li><li><a href="module-adminUIListScreen.html">adminUIListScreen</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assertCssIsVisible">assertCssIsVisible</a></li><li><a href="global.html#assertCssTextContains">assertCssTextContains</a></li><li><a href="global.html#assertCssTextEquals">assertCssTextEquals</a></li><li><a href="global.html#assertElementHasAttribute">assertElementHasAttribute</a></li><li><a href="global.html#assertElementIsNotPresent">assertElementIsNotPresent</a></li><li><a href="global.html#assertElementIsNotVisible">assertElementIsNotVisible</a></li><li><a href="global.html#assertElementIsPresent">assertElementIsPresent</a></li><li><a href="global.html#assertElementIsVisible">assertElementIsVisible</a></li><li><a href="global.html#assertElementTextContains">assertElementTextContains</a></li><li><a href="global.html#assertElementTextEquals">assertElementTextEquals</a></li><li><a href="global.html#assertElementTextNotEquals">assertElementTextNotEquals</a></li><li><a href="global.html#assertPrimaryNavbarSectionVisible">assertPrimaryNavbarSectionVisible</a></li><li><a href="global.html#assertSecondaryNavbarListVisible">assertSecondaryNavbarListVisible</a></li><li><a href="global.html#clickPrimaryNavbar">clickPrimaryNavbar</a></li><li><a href="global.html#clickSecondaryNavbar">clickSecondaryNavbar</a></li><li><a href="global.html#clickUIElement">clickUIElement</a></li><li><a href="global.html#getPrimaryNavbarSectionElement">getPrimaryNavbarSectionElement</a></li><li><a href="global.html#getSecondaryNavbarListElement">getSecondaryNavbarListElement</a></li><li><a href="global.html#gotoHomeScreen">gotoHomeScreen</a></li><li><a href="global.html#gotoSigninScreen">gotoSigninScreen</a></li><li><a href="global.html#openList">openList</a></li><li><a href="global.html#signin">signin</a></li><li><a href="global.html#signout">signout</a></li><li><a href="global.html#waitForDeleteConfirmationScreen">waitForDeleteConfirmationScreen</a></li><li><a href="global.html#waitForForSecondaryNavbar">waitForForSecondaryNavbar</a></li><li><a href="global.html#waitForHomeScreen">waitForHomeScreen</a></li><li><a href="global.html#waitForInitialFormScreen">waitForInitialFormScreen</a></li><li><a href="global.html#waitForItemScreen">waitForItemScreen</a></li><li><a href="global.html#waitForListScreen">waitForListScreen</a></li><li><a href="global.html#waitForResetConfirmationScreen">waitForResetConfirmationScreen</a></li><li><a href="global.html#waitForSigninScreen">waitForSigninScreen</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Sat Oct 08 2016 14:23:20 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
