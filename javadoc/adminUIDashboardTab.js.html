@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: adminUISignin.js</title>
+    <title>JSDoc: Source: adminUIDashboardTab.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: adminUISignin.js</h1>
+    <h1 class="page-title">Source: adminUIDashboardTab.js</h1>
 
     
 
@@ -26,53 +26,105 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var objectAssign = require('object-assign');
+            <pre class="prettyprint source linenums"><code>var utils = require('keystone-utils');
 
-module.exports = {
-	elements: {
-		/**
-		 * The login email element.
-		 */
-		email: 'input[name=email]',
+module.exports = function DashboardTab (config) {
+	var selectElem = function (elem) {
+		return self.selector + ' ' + self.elements[elem];
+	};
 
-		/**
-		 * The login password element.
-		 */
-		password: 'input[name=password]',
+	var listPath = utils.keyToPath(config.list, true);
+	var listLabel = utils.keyToLabel(listPath);
 
+	var self = {
+		selector: '.dashboard-group__list[data-list-path="' + listPath + '"]',
 		/**
-		 * The login submit button element.
+		 * Home screen tab elements.
 		 */
-		submitButton: 'button[type=submit]',
-	},
-	commands: [{
-		/**
-		 * Signs in to the Admin UI.
-		 *
-		 * @param {Object} config The login info.
-		 * @param {string} config.user The login username/email.
-		 * @param {string} config.password The login password.
-		 * @param {boolean} config.wait Whether to wait for the home screen by default.  Optional, defaults to true.
-		 */
-		signin: function (config) {
-			var _config = objectAssign({}, { user: 'user@test.e2e', password: 'test', wait: true }, config);
-			this
-				.setValue('@email', _config.user)
-				.setValue('@password', _config.password)
-				.click('@submitButton');
-			if (_config.wait) this.api.page.adminUIApp().waitForHomeScreen();
-			return this;
+		elements: {
+			/**
+			 * The tab label element.
+			 */
+			label: '.dashboard-group__list-label',
+
+			/**
+			 * The tab item count element.
+			 */
+			itemCount: '.dashboard-group__list-count',
+
+			/**
+			 * The tab plus icon element.
+			 */
+			plusIconLink: 'a.dashboard-group__list-create.octicon.octicon-plus',
 		},
-		assertUI: function () {
-			this
-				.expect.element('@email').to.be.visible;
-			this
-				.expect.element('@password').to.be.visible;
-			this
-				.expect.element('@submitButton').to.be.visible;
-			return this;
+		commands: {
+			assertTabUIVisible: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).to.be.visible;
+				browser
+					.expect.element(selectElem('plusIconLink')).to.be.visible;
+				browser
+					.expect.element(selectElem('itemCount')).to.be.visible;
+				return browser;
+			},
+			assertTabUINotVisible: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).to.not.be.visible;
+				browser
+					.expect.element(selectElem('plusIconLink')).to.not.be.visible;
+				browser
+					.expect.element(selectElem('itemCount')).to.not.be.visible;
+				return browser;
+			},
+			assertTabDOMPresent: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).to.be.present;
+				browser
+					.expect.element(selectElem('plusIconLink')).to.be.present;
+				browser
+					.expect.element(selectElem('itemCount')).to.be.present;
+				return browser;
+			},
+			assertTabDOMNotPresent: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).to.not.be.present;
+				browser
+					.expect.element(selectElem('plusIconLink')).to.not.be.present;
+				browser
+					.expect.element(selectElem('itemCount')).to.not.be.present;
+				return browser;
+			},
+			assertTabTextEquals: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).text.to.equal(listLabel);
+				browser
+					.expect.element(selectElem('itemCount')).text.to.equal(config.items);
+				return browser;
+			},
+			assertTabTextContains: function (browser, options) {
+				browser
+					.expect.element(selectElem('label')).text.to.contain(listLabel);
+				browser
+					.expect.element(selectElem('itemCount')).text.to.contain(config.items);
+				return browser;
+			},
+			clickTabUI: function (browser, clickable, options) {
+				browser
+					.click(selectElem(clickable));
+				var wait = options &amp;&amp; options.wait || true;
+				if (wait) {
+					if (clickable === 'label' || clickable === 'itemCount') {
+						browser.api.page.adminUIApp().waitForListScreen();
+					} else if (clickable === 'plusIconLink') {
+						browser.api.page.adminUIApp().waitForInitialFormScreen();
+					}
+				}
+				return browser;
+			},
 		},
-	}],
+	};
+
+	return self;
 };
 </code></pre>
         </article>

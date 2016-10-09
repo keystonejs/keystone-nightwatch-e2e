@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: adminUISignin.js</title>
+    <title>JSDoc: Source: adminUIDashboardGroup.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: adminUISignin.js</h1>
+    <h1 class="page-title">Source: adminUIDashboardGroup.js</h1>
 
     
 
@@ -26,53 +26,103 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var objectAssign = require('object-assign');
+            <pre class="prettyprint source linenums"><code>var DashboardTab = require('./adminUIDashboardTab');
 
-module.exports = {
-	elements: {
-		/**
-		 * The login email element.
-		 */
-		email: 'input[name=email]',
+module.exports = function DashboardGroup (config) {
+	var tabs = {};
+	config.tabs.forEach(function (tab) {
+		if (tab.list) {
+			if (tab.items) {
+				tabs[tab.list] = new DashboardTab(tab);
+			} else {
+				throw new Error('DashboardGroup:config: No tab items specified!');
+			}
+		} else {
+			throw new Error('DashboardGroup:config: No tab name specified!');
+		}
+	});
 
-		/**
-		 * The login password element.
-		 */
-		password: 'input[name=password]',
+	var selectElem = function (elem) {
+		return self.selector + ' ' + self.elements[elem];
+	};
 
+	var self = {
+		selector: '.dashboard-group[data-section-label="' + config.groupName + '"]',
 		/**
-		 * The login submit button element.
+		 * Home screen group elements.
 		 */
-		submitButton: 'button[type=submit]',
-	},
-	commands: [{
-		/**
-		 * Signs in to the Admin UI.
-		 *
-		 * @param {Object} config The login info.
-		 * @param {string} config.user The login username/email.
-		 * @param {string} config.password The login password.
-		 * @param {boolean} config.wait Whether to wait for the home screen by default.  Optional, defaults to true.
-		 */
-		signin: function (config) {
-			var _config = objectAssign({}, { user: 'user@test.e2e', password: 'test', wait: true }, config);
-			this
-				.setValue('@email', _config.user)
-				.setValue('@password', _config.password)
-				.click('@submitButton');
-			if (_config.wait) this.api.page.adminUIApp().waitForHomeScreen();
-			return this;
+		elements: {
+			/**
+			 * The group heading element.
+			 */
+			heading: '.dashboard-group__heading',
 		},
-		assertUI: function () {
-			this
-				.expect.element('@email').to.be.visible;
-			this
-				.expect.element('@password').to.be.visible;
-			this
-				.expect.element('@submitButton').to.be.visible;
-			return this;
+		tabs: tabs,
+		commands: {
+			assertTabUIVisible: function (browser, options) {
+				browser.expect.element(selectElem('heading')).to.be.visible;
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabUIVisible(browser, options);
+					}
+				}
+				return browser;
+			},
+			assertTabUINotVisible: function (browser, options) {
+				browser.expect.element(selectElem('heading')).to.not.be.visible;
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabUINotVisible(browser, options);
+					}
+				}
+				return browser;
+			},
+			assertTabDOMPresent: function (browser, options) {
+				browser.expect.element(selectElem('heading')).to.be.present;
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabDOMPresent(browser, options);
+					}
+				}
+				return browser;
+			},
+			assertTabDOMNotPresent: function (browser, options) {
+				browser.expect.element(selectElem('heading')).to.not.be.present;
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabDOMNotPresent(browser, options);
+					}
+				}
+				return browser;
+			},
+			assertTabTextEquals: function (browser, options) {
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabTextEquals(browser, options);
+					}
+				}
+				return browser;
+			},
+			assertTabTextContains: function (browser, options) {
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.assertTabTextContains(browser, options);
+					}
+				}
+				return browser;
+			},
+			clickTabUI: function (browser, clickable, options) {
+				for (var tab in self.tabs) {
+					if (self.tabs.hasOwnProperty(tab)) {
+						self.tabs[tab].commands.clickTabUI(browser, clickable, options);
+					}
+				}
+				return browser;
+			},
 		},
-	}],
+	};
+
+	return self;
 };
 </code></pre>
         </article>
