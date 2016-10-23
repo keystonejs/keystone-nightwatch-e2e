@@ -1,40 +1,52 @@
-# End-2-End Functional Testing
-This is an overview of the end-2-end UI/functional testing for keystone.  UI/functional tests ensure
-regression coverage of all aspects of a real keystone application.  The tests use a real keystone
-application with as much available configuration as possible.  Please note that this is not a
-replacement for component-based unit testing, which attempt to do full regression coverage of all
-the operations a particular component is responsible for.
+# End-2-End Functional Testing Framework
+This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.  
+UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application as well as
+ensures that KeystoneJS itself has not regressed on the application functionality.  The tests use a real keystone
+application and should do so with as much available configuration as possible.  Please note that this is not a
+replacement for component-based unit testing, which attempt to do full regression coverage of all the operations 
+a particular application component is responsible for.  This framework uses the [nightwatchjs.org](http://nightwatchjs.org/)
+functional test framework.  Thus, if you will be contributing updates to this framework it is a good idea to have 
+some familiarity with its concepts.  If all you are interested in is writing your own e2e tests for your own
+application then you do not really need to become an expert in NightwatchJS but some familiarity with it is still 
+greatly recommended.  Below we outline all you need to do to get started. 
 
 
 ## Setup
-The setup is partly based on instructions at [nightwatchjs.org](http://nightwatchjs.org/guide#installation)
-for nightwatch specific structure as well as partly based on a typical keystone app since the e2e test runs
-with a real keystone app server.
+For a sample e2e test setup, please refer to the one in the KeystoneJS repo that is used for for testing  
+KeystoneJS AdminUI functionality.  Using that structure in your own application and then updating it per your 
+application requirements is a good first step. The following is an overview of that setup and highlights what
+you may change/remove from your own setup:
 
     test/e2e
         global.js                               => common nightwatch test environment config
 
-        server.js                               => keystone test app server
+        server.js                               => keystone test app server (update per your application requirements)
 
         adminUI                                 => adminUI e2e test suite
-            nightwatch.json                     => nightwatch config
-            pages
-                ...                             => page objects representing an AdminUI screen/page
-            tests
-                groupNNN<group-name>            => adminUI test group, where NNN is a group sequence number
-                    uiTest<test-name>           => UI test suite
-                    uxTest<test-name>           => UX/functional test suite
+            nightwatch.json                     => nightwatch config (nightwatch starts the selenium server)
+            nightwatch-no-process.json          => nightwatch config (the e2e framework starts the selenium server)
+            tests                               => directory to group all e2e tests
+                groupNNN<group-name>            => adminUI test group, where NNN is a group sequence number (add your own groups)
+                    uiTest<test-name>           => UI test suite (add your own UI tests)
+                    uxTest<test-name>           => UX/functional test suite (add your own UX tests)
 
         drivers
             <browser drivers>                   => all required browser drivers
 
-        updates                                 => all schema update/migration files
-           0.0.1-updates-e2e.js                 => keystone updates
+        frontend                                => frontend pages (you probably don't need this as you already should have these already defined)
+            <page content>                      => these are your application frontend pages
 
-        models                                  => all test list models
-           User.js                              => keystone user list model
-           ...
+        modelTestConfig                         => describe your application models to the test framework
+           ...                                  => use the existing ones as guidelines
 
+        models                                  => all application list models (you probably don't need this as you already should have these already defined)
+           ...                                  
+
+        routes                                  => frontend routes (you probably don't need this as you already should have these already defined)
+            <route content>                     => these are your application frontend pages
+
+        updates                                 => all schema update/migration files (you probably don't need this as you already should have these already defined)
+           <update scripts>                     => keystone updates
 
 ## Running
 Testing is a critical part of any keystone commit to ensure the commit has not introduced any
@@ -44,7 +56,6 @@ update the test suite so that any broken tests pass again.  You can run any of t
 from keystone's root directory:
 
     Pre-requisites:
-        - Make sure that you have a Java JDK installed.  Minimum version is 7.
         - Make sure that you have Firefox (or Chrome) installed.  Firefox is the default browser used.
           Using Chrome requires specifying a different --env parameter (see below).  For any tests below
           you may replace the "--env default" parameter with one of the following:
@@ -139,81 +150,7 @@ any changes it does to the state of the UI)
 
 
 ## Adding Field Tests
+Built-in KeystoneJS fields are tested via Field Test Objects (see lib/src/fieldTestObjects).  If and when KeystoneJS
+allows creating custom fields we will provide guidelines for writing Field Test Objects on your own.  If you are adding
+support for a KeystoneJS built-in field type then follow the same structure as the existing Field Test Objects. 
 
-- add a model for the field to test/e2e/models/fields/<Field-Name>.js
-- add the field collection to the fields nav in test/e2e/server.js
-- add a page object for the field to test/e2e/adminUI/pages/fieldTypes
-- add a page object for the list testing the field to test/e2e/adminUI/pages/lists
-- add uiTest<Field-Name>Field.js to test/e2e/adminUI/group005Fields
-- add uxTest<Field-Name>Field.js to test/e2e/adminUI/group005Fields
-
-
-## Some about nightwatch Page Objects(PO)
-Since we use nightwatch Page Objects(PO) quite a bit in e2e then here are some notes to keep in mind:
-
-- a PO is basically an abstraction of a view/page.  It defines:
-
-    - elements and their selectors.  For example:
-
-        elements: {
-            elem1: 'a-selector-could-be-defined-via-a-simple-string'
-        }
-        or,
-        elements: {
-            elem1: {
-                selector: 'a-selector-could-be-defined-via-the-selector-property-if-need-to-provide-a-strategy',
-                locateStrategy: 'xpath',
-            }
-        }
-
-    - commands.  For example:
-
-        commands: [{
-            waitForElem1ToShowUp: function () {
-                return this
-                    .waitForElementVisible('@elem1');
-            },
-        }],
-
-    - tests `before:` should define all POs the test will need to interact with.  For example:
-
-        before: function (browser) {
-            browser.spa = browser.page.spa();
-            browser.spa.navigate();
-        }
-
-        then in tests you can access the spa PO as follows:
-
-            browser.spa
-                .click('@fieldsMenu')
-
-        in PO commands you can access the POs as follows:
-
-            this.api.spa
-                .click('@fieldsMenu')
-
-- list POs are very special.  The abstract a list and its fields.  They also include the commands that can be executed
-    against the list.  They should all have the same format.  The only things that may vary are the field names, the
-    number of fields, and the selectors, and the number of commands (the more fields the more commands since there
-    are commands per field in the list).  Unlike other page objects, list objects are not meant to be directly created.
-    Instead, these are required by other page objects (e.g., the item page object).  All selector lookups and commands
-    executed against a list are done in the context of the page that required the list.
-
-
-## Some Don'ts
-Here are some don'ts that may cross your mind as good ideas but shouldn't:
-
-- don't do something like the following in the lists.  Although it may sound like a good idea at first, think about it
-    a bit more shows some pitfalls the main one being that lists do not know in which form they are being used.  For
-    example, the initial modal form may only show fields that the user marked as _initial_ when defining the keystone
-    list.
-
-        assertUI: function () {
-            this.expect.section('@name').to.be.visible;
-            this.expect.section('@fieldA').to.be.visible;
-        }
-
-- in [here](http://martinfowler.com/bliki/PageObject.html) Martin Fowler suggests that no assertions be done in page
-    objects.  For the most part we are sticking to that suggestion.  The only place where we currently do assertions
-    is in the field type definitions, since the fields know better about their contained path elements.  So please
-    try not to add assertions anywhere else in page objects as doing so may have subtle pitfalls.
