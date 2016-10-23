@@ -38,87 +38,6 @@ var utils = require('keystone-utils');
 module.exports = {
 	url: 'http://' + keystone.get('host') + ':' + keystone.get('port') + '/keystone/',
 	pause: 1000,
-	/**
-	 * The admin UI app elements.
-	 */
-	elements: {
-		// ADMIN UI APP SCREENS
-		/**
-		 * The signin screen element
-		 */
-		signinScreen: '#signin-view',
-
-		/**
-		 * The home screen element
-		 */
-		homeScreen: 'div[data-screen-id="home"]',
-
-		/**
-		 * The list screen element
-		 */
-		listScreen: 'div[data-screen-id="list"]',
-
-		/**
-		 * The edit item screen element
-		 */
-		itemScreen: 'div[data-screen-id="item"]',
-
-		/**
-		 * The create item form screen element
-		 */
-		initialFormScreen: '.Modal-dialog',
-
-		/**
-		 * The delete confirmation screen element
-		 */
-		deleteConfirmationScreen: '.Modal-dialog',
-
-		/**
-		 * The reset confirmation screen element
-		 */
-		resetConfirmationScreen: '.Modal-dialog',
-
-		// APP LINKS
-		/**
-		 * The home icon element.
-		 */
-		homeIcon: '.primary-navbar [data-section-label="octicon-home"]',
-
-		/**
-		 * The home icon link element.
-		 */
-		homeIconLink: '.primary-navbar [data-section-label="octicon-home"] a',
-
-		/**
-		 * The frontend page icon element.
-		 */
-		frontPageIcon: '.primary-navbar [data-section-label="octicon-globe"]',
-
-		/**
-		 * The frontend page icon link element.
-		 */
-		frontPageIconLink: '.primary-navbar [data-section-label="octicon-globe"] a',
-
-		/**
-		 * The logout icon element.
-		 */
-		logoutIcon: '.primary-navbar [data-section-label="octicon-sign-out"]',
-
-		/**
-		 * The logout icon link element.
-		 */
-		logoutIconLink: '.primary-navbar [data-section-label="octicon-sign-out"] a',
-
-		/**
-		 * The primary navbar element.
-		 */
-		primaryNavbar: '.primary-navbar',
-
-		/**
-		 * The secondary navbar element.
-		 */
-		secondaryNavbar: '.secondary-navbar',
-	},
 	commands: [{
 		/**
 		 * Navigates to the signin screen.
@@ -156,9 +75,13 @@ module.exports = {
 		 */
 		openList: function (config) {
 			var _config = objectAssign({}, { wait: true }, config);
-			this.clickPrimaryNavbar({ section: _config.section })
-				.waitForForSecondaryNavbar()
-				.clickSecondaryNavbar({ list: _config.list });
+			if (_config.section &amp;&amp; _config.list) {
+				this.clickPrimaryNavbar({ section: _config.section })
+					.waitForForSecondaryNavbar()
+					.clickSecondaryNavbar({ list: _config.list });
+			} else {
+				throw new Error('adminUIApp:must specify a navbar section and a list!');
+			}
 			if (_config.wait) this.waitForListScreen();
 			return this;
 		},
@@ -172,8 +95,11 @@ module.exports = {
 		 */
 		clickPrimaryNavbar: function (config) {
 			var _config = objectAssign({}, { wait: true }, config);
-			this
-				.click(this.getPrimaryNavbarSectionElement({ section: _config.section }));
+			if (_config.section) {
+				this.click(this.getPrimaryNavbarSectionElement({ section: _config.section }));
+			} else {
+				throw new Error('adminUIApp:must specify a navbar section!');
+			}
 			if (_config.wait) this.waitForForSecondaryNavbar();
 			return this;
 		},
@@ -187,8 +113,11 @@ module.exports = {
 		 */
 		clickSecondaryNavbar: function (config) {
 			var _config = objectAssign({}, { wait: true }, config);
-			this
-				.click(this.getSecondaryNavbarListElement({ list: _config.list }));
+			if (_config.list) {
+				this.click(this.getSecondaryNavbarListElement({ list: _config.list }));
+			} else {
+				throw new Error('adminUIApp:must specify a navbar list!');
+			}
 			if (_config.wait) this.waitForListScreen();
 			return this;
 		},
@@ -474,6 +403,87 @@ module.exports = {
 			return '.secondary-navbar li[data-list-path="' + path + '"]';
 		},
 	}],
+	/**
+	 * The admin UI app elements.
+	 */
+	elements: {
+		// ADMIN UI APP SCREENS
+		/**
+		 * The signin screen element
+		 */
+		signinScreen: '#signin-view',
+
+		/**
+		 * The home screen element
+		 */
+		homeScreen: 'div[data-screen-id="home"]',
+
+		/**
+		 * The list screen element
+		 */
+		listScreen: 'div[data-screen-id="list"]',
+
+		/**
+		 * The edit item screen element
+		 */
+		itemScreen: 'div[data-screen-id="item"]',
+
+		/**
+		 * The create item form screen element
+		 */
+		initialFormScreen: '.Modal-dialog',
+
+		/**
+		 * The delete confirmation screen element
+		 */
+		deleteConfirmationScreen: '.Modal-dialog',
+
+		/**
+		 * The reset confirmation screen element
+		 */
+		resetConfirmationScreen: '.Modal-dialog',
+
+		// APP LINKS
+		/**
+		 * The home icon element.
+		 */
+		homeIcon: '.primary-navbar [data-section-label="octicon-home"]',
+
+		/**
+		 * The home icon link element.
+		 */
+		homeIconLink: '.primary-navbar [data-section-label="octicon-home"] a',
+
+		/**
+		 * The frontend page icon element.
+		 */
+		frontPageIcon: '.primary-navbar [data-section-label="octicon-globe"]',
+
+		/**
+		 * The frontend page icon link element.
+		 */
+		frontPageIconLink: '.primary-navbar [data-section-label="octicon-globe"] a',
+
+		/**
+		 * The logout icon element.
+		 */
+		logoutIcon: '.primary-navbar [data-section-label="octicon-sign-out"]',
+
+		/**
+		 * The logout icon link element.
+		 */
+		logoutIconLink: '.primary-navbar [data-section-label="octicon-sign-out"] a',
+
+		/**
+		 * The primary navbar element.
+		 */
+		primaryNavbar: '.primary-navbar',
+
+		/**
+		 * The secondary navbar element.
+		 */
+		secondaryNavbar: '.secondary-navbar',
+	},
 };
 </code></pre>
         </article>
@@ -485,13 +495,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-adminUIInitialForm.html">adminUIInitialForm</a></li><li><a href="module-adminUIItemScreen.html">adminUIItemScreen</a></li><li><a href="module-adminUIListScreen.html">adminUIListScreen</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assertCssIsVisible">assertCssIsVisible</a></li><li><a href="global.html#assertCssTextContains">assertCssTextContains</a></li><li><a href="global.html#assertCssTextEquals">assertCssTextEquals</a></li><li><a href="global.html#assertElementHasAttribute">assertElementHasAttribute</a></li><li><a href="global.html#assertElementIsNotPresent">assertElementIsNotPresent</a></li><li><a href="global.html#assertElementIsNotVisible">assertElementIsNotVisible</a></li><li><a href="global.html#assertElementIsPresent">assertElementIsPresent</a></li><li><a href="global.html#assertElementIsVisible">assertElementIsVisible</a></li><li><a href="global.html#assertElementTextContains">assertElementTextContains</a></li><li><a href="global.html#assertElementTextEquals">assertElementTextEquals</a></li><li><a href="global.html#assertElementTextNotEquals">assertElementTextNotEquals</a></li><li><a href="global.html#assertPrimaryNavbarSectionVisible">assertPrimaryNavbarSectionVisible</a></li><li><a href="global.html#assertSecondaryNavbarListVisible">assertSecondaryNavbarListVisible</a></li><li><a href="global.html#assertTabDOMNotPresent">assertTabDOMNotPresent</a></li><li><a href="global.html#assertTabDOMPresent">assertTabDOMPresent</a></li><li><a href="global.html#assertTabTextContains">assertTabTextContains</a></li><li><a href="global.html#assertTabTextEquals">assertTabTextEquals</a></li><li><a href="global.html#assertTabUINotVisible">assertTabUINotVisible</a></li><li><a href="global.html#assertTabUIVisible">assertTabUIVisible</a></li><li><a href="global.html#clickPrimaryNavbar">clickPrimaryNavbar</a></li><li><a href="global.html#clickSecondaryNavbar">clickSecondaryNavbar</a></li><li><a href="global.html#clickTabUI">clickTabUI</a></li><li><a href="global.html#clickUIElement">clickUIElement</a></li><li><a href="global.html#getPrimaryNavbarSectionElement">getPrimaryNavbarSectionElement</a></li><li><a href="global.html#getSecondaryNavbarListElement">getSecondaryNavbarListElement</a></li><li><a href="global.html#gotoHomeScreen">gotoHomeScreen</a></li><li><a href="global.html#gotoSigninScreen">gotoSigninScreen</a></li><li><a href="global.html#openList">openList</a></li><li><a href="global.html#signin">signin</a></li><li><a href="global.html#signout">signout</a></li><li><a href="global.html#waitForDeleteConfirmationScreen">waitForDeleteConfirmationScreen</a></li><li><a href="global.html#waitForForSecondaryNavbar">waitForForSecondaryNavbar</a></li><li><a href="global.html#waitForHomeScreen">waitForHomeScreen</a></li><li><a href="global.html#waitForInitialFormScreen">waitForInitialFormScreen</a></li><li><a href="global.html#waitForItemScreen">waitForItemScreen</a></li><li><a href="global.html#waitForListScreen">waitForListScreen</a></li><li><a href="global.html#waitForResetConfirmationScreen">waitForResetConfirmationScreen</a></li><li><a href="global.html#waitForSigninScreen">waitForSigninScreen</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-adminUIHomeScreen.html">adminUIHomeScreen</a></li><li><a href="module-adminUIInitialForm.html">adminUIInitialForm</a></li><li><a href="module-adminUIItemScreen.html">adminUIItemScreen</a></li><li><a href="module-adminUIListScreen.html">adminUIListScreen</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assertCssIsVisible">assertCssIsVisible</a></li><li><a href="global.html#assertCssTextContains">assertCssTextContains</a></li><li><a href="global.html#assertCssTextEquals">assertCssTextEquals</a></li><li><a href="global.html#assertElementHasAttribute">assertElementHasAttribute</a></li><li><a href="global.html#assertElementIsNotPresent">assertElementIsNotPresent</a></li><li><a href="global.html#assertElementIsNotVisible">assertElementIsNotVisible</a></li><li><a href="global.html#assertElementIsPresent">assertElementIsPresent</a></li><li><a href="global.html#assertElementIsVisible">assertElementIsVisible</a></li><li><a href="global.html#assertElementTextContains">assertElementTextContains</a></li><li><a href="global.html#assertElementTextEquals">assertElementTextEquals</a></li><li><a href="global.html#assertElementTextNotEquals">assertElementTextNotEquals</a></li><li><a href="global.html#assertPrimaryNavbarSectionVisible">assertPrimaryNavbarSectionVisible</a></li><li><a href="global.html#assertSecondaryNavbarListVisible">assertSecondaryNavbarListVisible</a></li><li><a href="global.html#clickPrimaryNavbar">clickPrimaryNavbar</a></li><li><a href="global.html#clickSecondaryNavbar">clickSecondaryNavbar</a></li><li><a href="global.html#clickUIElement">clickUIElement</a></li><li><a href="global.html#getPrimaryNavbarSectionElement">getPrimaryNavbarSectionElement</a></li><li><a href="global.html#getSecondaryNavbarListElement">getSecondaryNavbarListElement</a></li><li><a href="global.html#gotoHomeScreen">gotoHomeScreen</a></li><li><a href="global.html#gotoSigninScreen">gotoSigninScreen</a></li><li><a href="global.html#openList">openList</a></li><li><a href="global.html#signin">signin</a></li><li><a href="global.html#signout">signout</a></li><li><a href="global.html#waitForDeleteConfirmationScreen">waitForDeleteConfirmationScreen</a></li><li><a href="global.html#waitForForSecondaryNavbar">waitForForSecondaryNavbar</a></li><li><a href="global.html#waitForHomeScreen">waitForHomeScreen</a></li><li><a href="global.html#waitForInitialFormScreen">waitForInitialFormScreen</a></li><li><a href="global.html#waitForItemScreen">waitForItemScreen</a></li><li><a href="global.html#waitForListScreen">waitForListScreen</a></li><li><a href="global.html#waitForResetConfirmationScreen">waitForResetConfirmationScreen</a></li><li><a href="global.html#waitForSigninScreen">waitForSigninScreen</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Sun Oct 09 2016 14:16:35 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Sun Oct 23 2016 18:04:48 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
