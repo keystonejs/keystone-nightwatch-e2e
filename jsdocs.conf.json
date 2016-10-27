@@ -4,12 +4,15 @@
     },
     "source": {
         "include": [
+            "README.md",
             "lib/src/pageObjects"
         ],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
-    "plugins": [],
+    "plugins": [
+        "plugins/markdown"
+    ],
     "templates": {
         "cleverLinks": false,
         "monospaceLinks": false,
