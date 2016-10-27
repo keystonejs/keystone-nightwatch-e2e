@@ -44,7 +44,7 @@
     "jsdoc": "^3.4.1"
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint --ignore-path .eslintignore .",
     "build-docs": "./node_modules/.bin/jsdoc -c ./jsdocs.conf.json"
   }
 }
