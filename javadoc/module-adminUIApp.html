@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>adminUIItemScreen - Documentation</title>
+    <title>adminUIApp - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">adminUIItemScreen</h1>
+    <h1 class="page-title">adminUIApp</h1>
     
 
     
@@ -49,11 +49,10 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>This module defines the commands an e2e test client may execute against keystone's item edit form screen.
-When using the assertElement* commands, you may specify one of the predefined element selector properties
-by prefixing it with the '@' sign or you can specify a string representing your own element selector.
-See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI/tests/group005Item">usage example</a>,
-<a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI/tests/group006Fields">usage example</a></p></div>
+            <div class="description"><p>This module defines the commands an e2e test client may execute against keystone's Admin UI main app.
+When using the assertElement* or clickUIElement commands, you may specify one of the predefined element
+selector properties by prefixing it with the '@' sign or you can specify a string representing your own
+element selector.  See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI/tests/group002App">usage example</a>.</p></div>
         
 
         
@@ -67,7 +66,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line1">line 1</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -160,7 +159,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line597">line 597</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line441">line 441</a>
     </li></ul></dd>
     
 
@@ -223,7 +222,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
         <tr>
             
-                <td class="name"><code>listBreadcrumb</code></td>
+                <td class="name"><code>signinScreen</code></td>
             
 
             <td class="type">
@@ -239,14 +238,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the back to list breadcrumb.</p></td>
+            <td class="description last"><p>The element used to ID the signin screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>searchInputIcon</code></td>
+                <td class="name"><code>homeScreen</code></td>
             
 
             <td class="type">
@@ -262,14 +261,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the search input icon.</p></td>
+            <td class="description last"><p>The element used to ID the home screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>newItemButton</code></td>
+                <td class="name"><code>listScreen</code></td>
             
 
             <td class="type">
@@ -285,14 +284,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the new item button.</p></td>
+            <td class="description last"><p>The element used to ID the list screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>flashMessage</code></td>
+                <td class="name"><code>itemScreen</code></td>
             
 
             <td class="type">
@@ -308,14 +307,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the success flash message.</p></td>
+            <td class="description last"><p>The element used to ID the edit item screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>flashError</code></td>
+                <td class="name"><code>initialFormScreen</code></td>
             
 
             <td class="type">
@@ -331,14 +330,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the error flash message.</p></td>
+            <td class="description last"><p>The element used to ID the create item form screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>readOnlyNameHeader</code></td>
+                <td class="name"><code>deleteConfirmationScreen</code></td>
             
 
             <td class="type">
@@ -354,14 +353,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the read-only name header.</p></td>
+            <td class="description last"><p>The element used to ID the delete confirmation screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>editableNameHeader</code></td>
+                <td class="name"><code>resetConfirmationScreen</code></td>
             
 
             <td class="type">
@@ -377,14 +376,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the editable name header.</p></td>
+            <td class="description last"><p>The element used to ID the reset confirmation screen.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>idLabel</code></td>
+                <td class="name"><code>homeIcon</code></td>
             
 
             <td class="type">
@@ -400,14 +399,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the item id label.</p></td>
+            <td class="description last"><p>The element used to ID the home icon.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>idValue</code></td>
+                <td class="name"><code>homeIconLink</code></td>
             
 
             <td class="type">
@@ -423,14 +422,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the item id value.</p></td>
+            <td class="description last"><p>The element used to ID the home icon link.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaHeader</code></td>
+                <td class="name"><code>frontPageIcon</code></td>
             
 
             <td class="type">
@@ -446,14 +445,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header.</p></td>
+            <td class="description last"><p>The element used to ID the frontend page icon.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaCreatedAtLabel</code></td>
+                <td class="name"><code>frontPageIconLink</code></td>
             
 
             <td class="type">
@@ -469,14 +468,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header created-at label.</p></td>
+            <td class="description last"><p>The element used to ID the frontend page icon link.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaCreatedAtValue</code></td>
+                <td class="name"><code>logoutIcon</code></td>
             
 
             <td class="type">
@@ -492,14 +491,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header created-at value.</p></td>
+            <td class="description last"><p>The element used to ID the logout icon.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaCreatedByLabel</code></td>
+                <td class="name"><code>logoutIconLink</code></td>
             
 
             <td class="type">
@@ -515,14 +514,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header created-by label.</p></td>
+            <td class="description last"><p>The element used to ID the logout icon link.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaCreatedByValue</code></td>
+                <td class="name"><code>primaryNavbar</code></td>
             
 
             <td class="type">
@@ -538,14 +537,14 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header created-by value.</p></td>
+            <td class="description last"><p>The element used to ID the primary navbar.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>metaUpdatedAtLabel</code></td>
+                <td class="name"><code>secondaryNavbar</code></td>
             
 
             <td class="type">
@@ -561,214 +560,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
             
 
-            <td class="description last"><p>The element used to ID the meta data header updated-at label.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>metaUpdatedAtValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the meta data header updated-at value.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>metaUpdatedByLabel</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the meta data header updated-by label.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>metaUpdatedByValue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the meta data header updated-by value.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>saveButton</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the save button.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resetButton</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the reset button.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>resetButtonText</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the reset button text.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>deleteButton</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the delete button.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>deleteButtonText</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the delete button text.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>firstRelationshipItemLink</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element used to ID the first relationship item link.</p></td>
+            <td class="description last"><p>The element used to ID the secondary navbar.</p></td>
         </tr>
 
     
@@ -810,7 +602,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line168">line 168</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -850,7 +642,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element has the specified attribute.</p>
+    <p>Asserts that the specified home screen element has the specified attribute.</p>
 </div>
 
 
@@ -1038,7 +830,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line87">line 87</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line85">line 85</a>
     </li></ul></dd>
     
 
@@ -1078,7 +870,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element DOM is not present.</p>
+    <p>Asserts that the specified home screen element DOM is not present.</p>
 </div>
 
 
@@ -1220,7 +1012,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line49">line 49</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -1260,7 +1052,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element UI is not visible.</p>
+    <p>Asserts that the specified home screen element UI is not visible.</p>
 </div>
 
 
@@ -1402,7 +1194,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line68">line 68</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line66">line 66</a>
     </li></ul></dd>
     
 
@@ -1442,7 +1234,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element DOM is present.</p>
+    <p>Asserts that the specified home screen element DOM is present.</p>
 </div>
 
 
@@ -1584,7 +1376,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line30">line 30</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -1624,7 +1416,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element UI is visible.</p>
+    <p>Asserts that the specified home screen element UI is visible.</p>
 </div>
 
 
@@ -1766,7 +1558,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line147">line 147</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line145">line 145</a>
     </li></ul></dd>
     
 
@@ -1806,7 +1598,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element text contains the specified value.</p>
+    <p>Asserts that the specified home screen element text contains the specified value.</p>
 </div>
 
 
@@ -1971,7 +1763,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line107">line 107</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -2011,7 +1803,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element text equals the specified value.</p>
+    <p>Asserts that the specified home screen element text equals the specified value.</p>
 </div>
 
 
@@ -2176,7 +1968,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line127">line 127</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -2216,7 +2008,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified edit item screen element text not equals the specified value.</p>
+    <p>Asserts that the specified home screen element text not equals the specified value.</p>
 </div>
 
 
@@ -2369,7 +2161,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
     
 
-    <h4 class="name" id="~assertFieldDOMNotPresent"><span class="type-signature">(inner) </span>assertFieldDOMNotPresent<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~assertPrimaryNavbarSectionVisible"><span class="type-signature">(inner) </span>assertPrimaryNavbarSectionVisible<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2381,7 +2173,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line329">line 329</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line373">line 373</a>
     </li></ul></dd>
     
 
@@ -2421,8 +2213,7 @@ See <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e/adminUI
 
 
 <div class="description">
-    <p>Asserts that the specified item field's DOM is not present in the edit item screen.  This command calls into the
-assertFieldDOMNotPresent command of the field under test, which gets passed the field.options.</p>
+    <p>Asserts that the specified primary navbar section is visible.</p>
 </div>
 
 
@@ -2502,13 +2293,13 @@ assertFieldDOMNotPresent command of the field under test, which gets passed the 
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>section</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -2518,76 +2309,7 @@ assertFieldDOMNotPresent command of the field under test, which gets passed the 
 
             
 
-            <td class="description last"><p>The array of fields to assert the DOM presence on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command assertFieldDOMNotPresent.</p></td>
+            <td class="description last"><p>The section that should be visible in the primary navbar.</p></td>
         </tr>
 
     
@@ -2621,7 +2343,7 @@ assertFieldDOMNotPresent command of the field under test, which gets passed the 
 
     
 
-    <h4 class="name" id="~assertFieldDOMPresent"><span class="type-signature">(inner) </span>assertFieldDOMPresent<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~assertSecondaryNavbarListVisible"><span class="type-signature">(inner) </span>assertSecondaryNavbarListVisible<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2633,7 +2355,7 @@ assertFieldDOMNotPresent command of the field under test, which gets passed the 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line283">line 283</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line384">line 384</a>
     </li></ul></dd>
     
 
@@ -2673,8 +2395,8 @@ assertFieldDOMNotPresent command of the field under test, which gets passed the 
 
 
 <div class="description">
-    <p>Asserts that the specified item field's DOM is present in the edit item screen.  This command calls into the
-assertFieldDOMPresent command of the field under test, which gets passed the field.options.</p>
+    <p>Asserts that the specified secondary navbar list is visible.  Make sure that the parent
+primary navbar section is clicked on first.</p>
 </div>
 
 
@@ -2754,13 +2476,13 @@ assertFieldDOMPresent command of the field under test, which gets passed the fie
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>list</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -2770,76 +2492,7 @@ assertFieldDOMPresent command of the field under test, which gets passed the fie
 
             
 
-            <td class="description last"><p>The array of fields to assert the DOM presence on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command assertFieldDOMPresent.</p></td>
+            <td class="description last"><p>The list that should be visible in the secondary navbar.</p></td>
         </tr>
 
     
@@ -2873,7 +2526,7 @@ assertFieldDOMPresent command of the field under test, which gets passed the fie
 
     
 
-    <h4 class="name" id="~assertFieldInputs"><span class="type-signature">(inner) </span>assertFieldInputs<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~clickPrimaryNavbar"><span class="type-signature">(inner) </span>clickPrimaryNavbar<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -2885,7 +2538,7 @@ assertFieldDOMPresent command of the field under test, which gets passed the fie
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line466">line 466</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line233">line 233</a>
     </li></ul></dd>
     
 
@@ -2925,8 +2578,7 @@ assertFieldDOMPresent command of the field under test, which gets passed the fie
 
 
 <div class="description">
-    <p>Asserts the field's inputs in the edit item screen are as specified.  This command calls into the
-assertFieldInputs command of the field under test, which gets passed the field.input and field.options.</p>
+    <p>Clicks the specified section in the primary navbar.</p>
 </div>
 
 
@@ -3006,13 +2658,13 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>section</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -3022,20 +2674,20 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 
             
 
-            <td class="description last"><p>The array of fields to assert the UI visibility on.</p></td>
+            <td class="description last"><p>The section in the primary navbar to click on.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>field.name</code></td>
+                <td class="name"><code>wait</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -3045,7 +2697,7 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 
             
 
-            <td class="description last"><p>The name of the field under test.</p></td>
+            <td class="description last"><p>Whether to wait for the target UI.  Optional, defaults to true.</p></td>
         </tr>
 
     
@@ -3053,75 +2705,6 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 </table>
 
             </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.input</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The input to pass to the field test object command assertFieldInputs.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command assertFieldInputs.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
         </tr>
 
     
@@ -3148,7 +2731,7 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 
     
 
-    <h4 class="name" id="~assertFieldUINotVisible"><span class="type-signature">(inner) </span>assertFieldUINotVisible<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~clickSecondaryNavbar"><span class="type-signature">(inner) </span>clickSecondaryNavbar<span class="signature">(config, list)</span><span class="type-signature"></span></h4>
 
     
 
@@ -3160,7 +2743,7 @@ assertFieldInputs command of the field under test, which gets passed the field.i
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line237">line 237</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line251">line 251</a>
     </li></ul></dd>
     
 
@@ -3200,8 +2783,186 @@ assertFieldInputs command of the field under test, which gets passed the field.i
 
 
 <div class="description">
-    <p>Asserts that the specified item field's UI is not visible in the edit item screen.  This command calls into the
-assertFieldUINotVisible command of the field under test, which gets passed the field.options.</p>
+    <p>Clicks the specified list in the secondary navbar.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>list</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The list in the secondary navbar to click on.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>config.wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to wait for the target UI.  Optional, defaults to true.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~clickUIElement"><span class="type-signature">(inner) </span>clickUIElement<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line394">line 394</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Clicks the specified UI element.</p>
 </div>
 
 
@@ -3281,13 +3042,13 @@ assertFieldUINotVisible command of the field under test, which gets passed the f
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>element</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -3297,76 +3058,7 @@ assertFieldUINotVisible command of the field under test, which gets passed the f
 
             
 
-            <td class="description last"><p>The array of fields to assert the UI visibility on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command assertFieldUINotVisible.</p></td>
+            <td class="description last"><p>The element whose UI should be clicked.</p></td>
         </tr>
 
     
@@ -3400,7 +3092,7 @@ assertFieldUINotVisible command of the field under test, which gets passed the f
 
     
 
-    <h4 class="name" id="~assertFieldUIVisible"><span class="type-signature">(inner) </span>assertFieldUIVisible<span class="signature">(config)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~getPrimaryNavbarSectionElement"><span class="type-signature">(inner) </span>getPrimaryNavbarSectionElement<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -3412,7 +3104,7 @@ assertFieldUINotVisible command of the field under test, which gets passed the f
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line191">line 191</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line408">line 408</a>
     </li></ul></dd>
     
 
@@ -3452,8 +3144,7 @@ assertFieldUINotVisible command of the field under test, which gets passed the f
 
 
 <div class="description">
-    <p>Asserts that the specified item field's UI is visible in the edit item screen.  This command calls into the
-assertFieldUIVisible command of the field under test, which gets passed the field.options.</p>
+    <p>Gets the primary navbar section element.</p>
 </div>
 
 
@@ -3533,13 +3224,13 @@ assertFieldUIVisible command of the field under test, which gets passed the fiel
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>section</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -3549,76 +3240,7 @@ assertFieldUIVisible command of the field under test, which gets passed the fiel
 
             
 
-            <td class="description last"><p>The array of fields to assert the UI visibility on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command assertFieldUIVisible.</p></td>
+            <td class="description last"><p>The navbar section to get the element for.</p></td>
         </tr>
 
     
@@ -3652,7 +3274,7 @@ assertFieldUIVisible command of the field under test, which gets passed the fiel
 
     
 
-    <h4 class="name" id="~back"><span class="type-signature">(inner) </span>back<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~getSecondaryNavbarListElement"><span class="type-signature">(inner) </span>getSecondaryNavbarListElement<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -3664,7 +3286,7 @@ assertFieldUIVisible command of the field under test, which gets passed the fiel
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line515">line 515</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line419">line 419</a>
     </li></ul></dd>
     
 
@@ -3704,92 +3326,7 @@ assertFieldUIVisible command of the field under test, which gets passed the fiel
 
 
 <div class="description">
-    <p>Navigate back to the list screen from the edit item form.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~clickFieldUI"><span class="type-signature">(inner) </span>clickFieldUI<span class="signature">(config)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line376">line 376</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Clicks the specified field's click area in the edit item screen.  This command calls into the
-clickFieldUI command of the field under test, which gets passed the field.input and field.options.</p>
+    <p>Gets the secondary navbar list element.</p>
 </div>
 
 
@@ -3869,13 +3406,13 @@ clickFieldUI command of the field under test, which gets passed the field.input 
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>list</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">string</span>
 
 
             
@@ -3885,30 +3422,7 @@ clickFieldUI command of the field under test, which gets passed the field.input 
 
             
 
-            <td class="description last"><p>The array of fields to click on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
+            <td class="description last"><p>The navbar list to get the element for.</p></td>
         </tr>
 
     
@@ -3916,75 +3430,6 @@ clickFieldUI command of the field under test, which gets passed the field.input 
 </table>
 
             </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.click</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The clickable area to pass to the field test object command clickFieldUI.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command clickFieldUI.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
         </tr>
 
     
@@ -4011,7 +3456,7 @@ clickFieldUI command of the field under test, which gets passed the field.input 
 
     
 
-    <h4 class="name" id="~delete"><span class="type-signature">(inner) </span>delete<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~gotoHomeScreen"><span class="type-signature">(inner) </span>gotoHomeScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -4023,7 +3468,7 @@ clickFieldUI command of the field under test, which gets passed the field.input 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line547">line 547</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line198">line 198</a>
     </li></ul></dd>
     
 
@@ -4063,92 +3508,7 @@ clickFieldUI command of the field under test, which gets passed the field.input 
 
 
 <div class="description">
-    <p>Deletes the item being edited.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~fillFieldInputs"><span class="type-signature">(inner) </span>fillFieldInputs<span class="signature">(config)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line423">line 423</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Fills the specified field's inputs in the edit item screen.  This command calls into the
-fillFieldInputs command of the field under test, which gets passed the field.input and field.options.</p>
+    <p>Navigates to the home screen.</p>
 </div>
 
 
@@ -4228,13 +3588,13 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>wait</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">boolean</span>
 
 
             
@@ -4244,30 +3604,7 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
 
             
 
-            <td class="description last"><p>The array of fields to assert the UI visibility on.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The name of the field under test.</p></td>
+            <td class="description last"><p>Whether to wait for the target UI.  Optional, defaults to true.</p></td>
         </tr>
 
     
@@ -4275,75 +3612,6 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
 </table>
 
             </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>field.input</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The input to pass to the field test object command fillFieldInputs.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Any options required by the field test object command fillFieldInputs.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>config.field.modelTestConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The model test config that should be used for the field under test.</p></td>
         </tr>
 
     
@@ -4370,7 +3638,7 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
 
     
 
-    <h4 class="name" id="~navitageToFirstRelationship"><span class="type-signature">(inner) </span>navitageToFirstRelationship<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~gotoSigninScreen"><span class="type-signature">(inner) </span>gotoSigninScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
 
     
 
@@ -4382,7 +3650,7 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line507">line 507</a>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line185">line 185</a>
     </li></ul></dd>
     
 
@@ -4422,345 +3690,7 @@ fillFieldInputs command of the field under test, which gets passed the field.inp
 
 
 <div class="description">
-    <p>Navigates to the first relationship in the edit item form.</p>
-<p>TODO:  this should be refactor to be able to navigate to any relationship!</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~new"><span class="type-signature">(inner) </span>new<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line523">line 523</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Creates a new item off the edit item form.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~reset"><span class="type-signature">(inner) </span>reset<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line539">line 539</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Resets pending changes in the edit item form.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~save"><span class="type-signature">(inner) </span>save<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line531">line 531</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Saves the edited item form.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~setDefaultModelTestConfig"><span class="type-signature">(inner) </span>setDefaultModelTestConfig<span class="signature">(modelTestConfig)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adminUIItemScreen.js.html">adminUIItemScreen.js</a>, <a href="adminUIItemScreen.js.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Sets a default model test config object so that tests do not have to pass it in with each field level command.
-Tests can still override the default model test config object when calling any field level command.</p>
+    <p>Navigates to the signin screen.</p>
 </div>
 
 
@@ -4798,7 +3728,7 @@ Tests can still override the default model test config object when calling any f
 
         <tr>
             
-                <td class="name"><code>modelTestConfig</code></td>
+                <td class="name"><code>config</code></td>
             
 
             <td class="type">
@@ -4814,8 +3744,1922 @@ Tests can still override the default model test config object when calling any f
 
             
 
-            <td class="description last"><p>The model test config that should be used by field level commands, if the
-                   command does not pass it in directly.</p></td>
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to wait for the target UI.  Optional, defaults to true.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~openList"><span class="type-signature">(inner) </span>openList<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line213">line 213</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Opens the list of items given the specified list config spec.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>section</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The section in the primary navbar to click on.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>list</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The list in the secondary navbar to click on.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to wait for the target UI.  Optional, defaults to true.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~signout"><span class="type-signature">(inner) </span>signout<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line268">line 268</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Logout the current user.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>wait</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Whether to wait for the signin screen by default.  Optional, defaults to true.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForDeleteConfirmationScreen"><span class="type-signature">(inner) </span>waitForDeleteConfirmationScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line317">line 317</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the delete confirmation screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForForSecondaryNavbar"><span class="type-signature">(inner) </span>waitForForSecondaryNavbar<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line361">line 361</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the secondary navbar UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForHomeScreen"><span class="type-signature">(inner) </span>waitForHomeScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line295">line 295</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the home screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForInitialFormScreen"><span class="type-signature">(inner) </span>waitForInitialFormScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line306">line 306</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the create item form screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForItemScreen"><span class="type-signature">(inner) </span>waitForItemScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line350">line 350</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the item edit form screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForListScreen"><span class="type-signature">(inner) </span>waitForListScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line339">line 339</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the item list screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForResetConfirmationScreen"><span class="type-signature">(inner) </span>waitForResetConfirmationScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line328">line 328</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the reset confirmation screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~waitForSigninScreen"><span class="type-signature">(inner) </span>waitForSigninScreen<span class="signature">(config)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="adminUIApp.js.html">adminUIApp.js</a>, <a href="adminUIApp.js.html#line284">line 284</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Waits for the signin screen UI to be visible.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>config</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The config spec.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Optional timeout to wait for.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
