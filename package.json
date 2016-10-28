@@ -1,6 +1,6 @@
 {
   "name": "keystone-nightwatch-e2e",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Nightwatch end-to-end testing framework for KeystoneJS applications",
   "main": "index.js",
   "repository": {
@@ -37,13 +37,14 @@
     "selenium-server-standalone-jar": "^2.53.1"
   },
   "devDependencies": {
+    "docdash": "^0.4.0",
     "eslint": "^3.4.0",
     "eslint-config-keystone": "^2.4.0",
     "eslint-plugin-react": "^6.2.0",
     "jsdoc": "^3.4.1"
   },
   "scripts": {
-    "lint": "eslint .",
-    "build-docs": "./node_modules/.bin/jsdoc lib/src/**/*.js"
+    "lint": "eslint --ignore-path .eslintignore .",
+    "build-docs": "./node_modules/.bin/jsdoc -c ./jsdocs.conf.json"
   }
 }
