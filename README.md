@@ -11,7 +11,11 @@ application then you do not really need to become an expert in NightwatchJS but 
 greatly recommended.  Below we outline all you need to do to get started. 
 
 
-## Setup
+## Installation
+`npm install keystone-nightwatch-e2e --save-dev`
+
+
+## Test Environment Setup
 For a sample e2e test setup, please refer to the one in the KeystoneJS repo that is used for for testing  
 KeystoneJS AdminUI functionality.  Using that structure in your own application and then updating it per your 
 application requirements is a good first step. The following is an overview of that setup and highlights what
@@ -48,7 +52,7 @@ you may change/remove from your own setup:
         updates                                 => all schema update/migration files (you probably don't need this as you already should have these already defined)
            <update scripts>                     => keystone updates
 
-## Running
+## Running Tests
 Testing is a critical part of any keystone commit to ensure the commit has not introduced any
 UI or functional regressions.  Make sure to run all keystone tests prior to pushing any commits.
 If your commit fixes a bug but breaks the UI/functional test suite please make sure that you also
