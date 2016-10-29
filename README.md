@@ -7,8 +7,9 @@ replacement for component-based unit testing, which attempt to do full regressio
 a particular application component is responsible for.  This framework uses the [nightwatchjs.org](http://nightwatchjs.org/)
 functional test framework.  Thus, if you will be contributing updates to this framework it is a good idea to have 
 some familiarity with its concepts.  If all you are interested in is writing your own e2e tests for your own
-application then you do not really need to become an expert in NightwatchJS but some familiarity with it is still 
-greatly recommended.  Below we outline all you need to do to get started. 
+KeystoneJS application then you do not really need to become an expert in NightwatchJS but some familiarity with
+it is still greatly recommended since you will need to control the nightwatch configuration for your tests.  Below
+we outline all you need to do to get started. 
 
 
 ## Installation
@@ -16,10 +17,10 @@ greatly recommended.  Below we outline all you need to do to get started.
 
 
 ## Test Environment Setup
-For a sample e2e test setup, please refer to the one in the KeystoneJS repo that is used for for testing  
-KeystoneJS AdminUI functionality.  Using that structure in your own application and then updating it per your 
-application requirements is a good first step. The following is an overview of that setup and highlights what
-you may change/remove from your own setup:
+For a sample e2e test setup, please refer to the one in the {@link https://github.com/keystonejs/keystone/tree/master/test/e2e|KeystoneJS repo}
+that is used for for testing KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
+updating it per your application requirements is considered a reasonable approach to get started. The following is an overview
+of that setup and highlights what you may change/remove from your own setup:
 
     test/e2e
         global.js                               => common nightwatch test environment config
@@ -52,12 +53,23 @@ you may change/remove from your own setup:
         updates                                 => all schema update/migration files (you probably don't need this as you already should have these already defined)
            <update scripts>                     => keystone updates
 
+Notes on the setup above:
+- Breaking things into groups helps with grouping functionality that may be ran together whenever a change is done to your
+KeystoneJS application.  In that case, you would just test that group, instead of the entire test suite.
+- In the KeystoneJS repo, we decided to separate UI and UX aspects into their own test files.  You may choose to combine the
+two into a single test.
+- Nightwatch uses selenium to carry on the functional testing.  As such, you may need to install appropriate drivers for the
+browser you intend to test with.
+
+
 ## Running Tests
-Testing is a critical part of any keystone commit to ensure the commit has not introduced any
-UI or functional regressions.  Make sure to run all keystone tests prior to pushing any commits.
-If your commit fixes a bug but breaks the UI/functional test suite please make sure that you also
-update the test suite so that any broken tests pass again.  You can run any of the following
-from keystone's root directory:
+Testing is a critical part of any KeystoneJS application commit to ensure the commit has not introduced
+any UI, UX, or functional regressions.  Make sure to run all functional tests prior to pushing any commits.
+And please note that a regression may be reflected either in your own application and/or in KeystoneJS itself.
+If your commit fixes a bug that in turn breaks the UI/UX functional test suite please make sure that you also
+update the test suite so that any broken tests pass again.  If your application changes discover any issues in
+KeystoneJS itself make sure to please open an issue in the KeystoneJS repo so it may get addressed.  The following
+are notes about running your test suite from your application's root directory:
 
     Pre-requisites:
         - Make sure that you have Firefox (or Chrome) installed.  Firefox is the default browser used.
@@ -85,7 +97,9 @@ from keystone's root directory:
 
             export KEYSTONEJS_PORT=9999
 
-        - Make sure to:
+        - KeystoneJS currently makes a decision about whether to optimize for fast application service startup or
+        fast admin UI application access.  We recommended that you optimize for the latter (fast admin UI application
+        access).  To do so  you can do the following before starting your test suite::
 
             export KEYSTONE_PREBUILD_ADMIN=true
 
@@ -134,27 +148,22 @@ from keystone's root directory:
 ## Adding New Tests
 You should consider adding new UI/UX/Functional tests if:
 
-- you introduce new UI elements (e.g., a new field type).
-- you introduce new client side functionality that may cause a different UX experience.
-- you introduce new server side functionality that may cause a different UX experience.
+- you introduce new UI elements (e.g., a new model).
+- you introduce new client side functionality that may cause a different UI/UX experience.
+- you introduce new server side functionality that may cause a different UI/UX experience.
 - you fix a bug that's does not have UI/UX/Functional test coverage
 
 
 ## Test Organization
 The best approach to keeping tests well organized is to:
 
-- when writing new tests, use an existing one as an example.
-- keep the test style consistent.
-- keep the test file structure consistent.
+- when writing new tests, keep it consistent and use an existing one as an example following the same style.
 - each test group must run on its own using the `--group` argument (that means, that each test within the group must undo
 any changes it does to the state of the UI)
 - each test within a group must run on its own using the `--test` argument (that means, that each test must undo
 any changes it does to the state of the UI)
-- when naming selectors (e.g., in adminUI.js) make sure to use a very descriptive name
 
 
-## Adding Field Tests
-Built-in KeystoneJS fields are tested via Field Test Objects (see lib/src/fieldTestObjects).  If and when KeystoneJS
-allows creating custom fields we will provide guidelines for writing Field Test Objects on your own.  If you are adding
-support for a KeystoneJS built-in field type then follow the same structure as the existing Field Test Objects. 
-
+## Adding Field Test Objects
+Built-in KeystoneJS fields are tested via Field Test Objects (see lib/src/fieldTestObjects).  If you are adding
+support for a new KeystoneJS field type then follow the same structure as the existing Field Test Objects. 
