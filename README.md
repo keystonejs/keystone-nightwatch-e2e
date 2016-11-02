@@ -1,5 +1,5 @@
 # End-2-End Functional Testing Framework
-This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.  
+This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.
 UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application as well as
 ensures that KeystoneJS itself has not regressed on the application functionality.  The tests use a real keystone
 application and should do so with as much available configuration as possible.  Please note that this is not a
@@ -9,7 +9,7 @@ functional test framework.  Thus, if you will be contributing updates to this fr
 some familiarity with its concepts.  If all you are interested in is writing your own e2e tests for your own
 KeystoneJS application then you do not really need to become an expert in NightwatchJS but some familiarity with
 it is still greatly recommended since you will need to control the nightwatch configuration for your tests.  Below
-we outline all you need to do to get started. 
+we outline all you need to do to get started.
 
 
 ## Installation
@@ -18,14 +18,16 @@ we outline all you need to do to get started.
 
 ## Test Environment Setup
 For a sample e2e test setup, please refer to the one in the {@link https://github.com/keystonejs/keystone/tree/master/test/e2e|KeystoneJS repo}
-that is used for for testing KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
+that is used for testing the KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
 updating it per your application requirements is considered a reasonable approach to get started. The following is an overview
-of that setup and highlights what you may change/remove from your own setup:
+of that setup and highlights what you may change in your own setup.  It may seem a bit daunting at first to take this setup on.
+However, realize that it is a one time setup and one that you will run over and over to ensure your application is protected
+against regressions due to either your own changes and/or changes to the keystone platform that may break your application.
 
     test/e2e
         global.js                               => common nightwatch test environment config
 
-        server.js                               => keystone test app server (update per your application requirements)
+        server.js                               => keystone app server (update per your application requirements -- see notes below)
 
         adminUI                                 => adminUI e2e test suite
             nightwatch.json                     => nightwatch config (nightwatch starts the selenium server)
@@ -54,6 +56,22 @@ of that setup and highlights what you may change/remove from your own setup:
            <update scripts>                     => keystone updates
 
 Notes on the setup above:
+- The server.js component is most likely the one that you will need to give the most attention to.  This component needs to require/use
+this framework.  The following lines in the server.js version in the keystonejs repo highlight the critical interaction 
+with this framework.  The startE2E function must be done after your keystone application is up and running.  You may need to refactor your current application
+server to integrate end to end testing into it.
+
+
+        var keystoneNightwatchE2e = require('keystone-nightwatch-e2e');
+
+        process.env['SELENIUM_SERVER'] = keystoneNightwatchE2e.seleniumPath;
+
+        process.env['PAGE_OBJECTS_PATH'] = keystoneNightwatchE2e.pageObjectsPath;
+
+        keystoneNightwatchE2e.startE2E(options, done);
+
+
+- The models, routes, and updates you should have already define in your keystone application.
 - Breaking things into groups helps with grouping functionality that may be ran together whenever a change is done to your
 KeystoneJS application.  In that case, you would just test that group, instead of the entire test suite.
 - In the KeystoneJS repo, we decided to separate UI and UX aspects into their own test files.  You may choose to combine the
