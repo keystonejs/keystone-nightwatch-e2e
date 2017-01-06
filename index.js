@@ -45,11 +45,13 @@ function runNightwatch (done) {
 
 	// Set app-specific env for nightwatch session
 	process.env.SELENIUM_SERVER = selenium.path;
+	process.env.PAGE_OBJECTS_PATH = path.resolve(__dirname, 'lib/src/pageObjects/');
+	process.env.GLOBALS_PATH = path.resolve(__dirname, 'globals.js');
 	process.env.SELENIUM_START_PROCESS = process.env.SELENIUM_START_PROCESS || true;
 
 	try {
 		Nightwatch.cli(function (argv) {
-			argv.config = './node_modules/keystone-nightwatch-e2e/nightwatch.json';
+			argv.config = path.resolve(__dirname, 'nightwatch.json');
 			Nightwatch.runner(argv, function () {
 				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: finished tests...');
 				done();
