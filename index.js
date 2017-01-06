@@ -43,8 +43,13 @@ function runSeleniumInBackground (done) {
 function runNightwatch (done) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: running nightwatch...');
 
+	// Set app-specific env for nightwatch session
+	process.env.SELENIUM_SERVER = selenium.path;
+	process.env.SELENIUM_START_PROCESS = process.env.SELENIUM_START_PROCESS || true;
+
 	try {
 		Nightwatch.cli(function (argv) {
+			argv.config = './node_modules/keystone-nightwatch-e2e/nightwatch.json';
 			Nightwatch.runner(argv, function () {
 				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: finished tests...');
 				done();
