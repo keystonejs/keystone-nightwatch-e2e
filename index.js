@@ -79,11 +79,12 @@ function startSauceConnect (done) {
 			if (err) {
 				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: There was an error starting Sauce Connect');
 				done(err);
+			} else {
+				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
+				sauceConnection = sauceConnectProcess;
+				sauceConnectionRunning = true;
+				done();
 			}
-			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
-			sauceConnection = sauceConnectProcess;
-			sauceConnectionRunning = true;
-			done();
 		});
 	} else {
 		done();
@@ -151,7 +152,7 @@ function start (options, callback) {
 		}
 		if (sauceConnectionRunning) {
 			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: something seems to have gone wrong, stopping sauce connect before travis shuts down');
-			stopSauceConnect(callback && callback(err));
+			stopSauceConnect(function () {callback && callback(err)});
 		} else {
 			callback && callback(err);
 		}
