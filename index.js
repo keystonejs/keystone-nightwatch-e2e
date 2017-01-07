@@ -59,6 +59,7 @@ function runNightwatch (done) {
 }
 
 var sauceConnection = null;
+var sauceConnectionRunning = false;
 
 function sauceConnectLog (message) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' Sauce Connect: ' + message);
@@ -78,10 +79,12 @@ function startSauceConnect (done) {
 			if (err) {
 				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: There was an error starting Sauce Connect');
 				done(err);
+			} else {
+				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
+				sauceConnection = sauceConnectProcess;
+				sauceConnectionRunning = true;
+				done();
 			}
-			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
-			sauceConnection = sauceConnectProcess;
-			done();
 		});
 	} else {
 		done();
@@ -93,6 +96,7 @@ function stopSauceConnect (done) {
 		console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Stopping Sauce Connect');
 		sauceConnection.close(function () {
 			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Stopped');
+			sauceConnectionRunning = false;
 			done();
 		});
 	} else {
@@ -146,7 +150,12 @@ function start (options, callback) {
 			selenium_proc.kill('SIGTERM');
 			selenium_proc.kill('SIGKILL');
 		}
-		callback && callback(err);
+		if (sauceConnectionRunning) {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: something seems to have gone wrong, stopping sauce connect before travis shuts down');
+			stopSauceConnect(function () { callback && callback(err); });
+		} else {
+			callback && callback(err);
+		}
 	});
 }
 
