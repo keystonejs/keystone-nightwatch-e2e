@@ -152,7 +152,7 @@ function start (options, callback) {
 		}
 		if (sauceConnectionRunning) {
 			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: something seems to have gone wrong, stopping sauce connect before travis shuts down');
-			stopSauceConnect(function () {callback && callback(err)});
+			stopSauceConnect(function () { callback && callback(err); });
 		} else {
 			callback && callback(err);
 		}
