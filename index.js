@@ -5,6 +5,7 @@ var Nightwatch = require('nightwatch/lib/index.js');
 var child_process = require('child_process');
 var selenium = require('selenium-server-standalone-jar');
 var selenium_proc = null;
+var sauceConnectLauncher = require('sauce-connect-launcher');
 
 /*
 On some machines, selenium fails with a timeout error when nightwatch tries to connect due to a
@@ -57,6 +58,48 @@ function runNightwatch (done) {
 	}
 }
 
+var sauceConnection = null;
+
+function sauceConnectLog (message) {
+	console.log([moment().format('HH:mm:ss:SSS')] + ' Sauce Connect: ' + message);
+}
+
+// Function that starts the sauce connect servers if SAUCE_ACCESS_KEY is set.
+function startSauceConnect (done) {
+	if (process.env.SAUCE_ACCESS_KEY !== undefined) {
+		console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Starting Sauce Connect');
+		sauceConnectLauncher({
+			username: process.env.SAUCE_USERNAME,
+			accessKey: process.env.SAUCE_ACCESS_KEY,
+			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+			connectRetries: 5,
+			logger: sauceConnectLog,
+		}, function (err, sauceConnectProcess) {
+			if (err) {
+				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: There was an error starting Sauce Connect');
+				done(err);
+			}
+			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
+			sauceConnection = sauceConnectProcess;
+			done();
+		});
+	} else {
+		done();
+	}
+}
+
+function stopSauceConnect (done) {
+	if (process.env.SAUCE_ACCESS_KEY !== undefined && sauceConnection !== null) {
+		console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Stopping Sauce Connect');
+		sauceConnection.close(function () {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Stopped');
+			done();
+		});
+	} else {
+		done();
+	}
+}
+
 /*
 	Function that starts the nightwatch-based e2e framework service
 
@@ -75,6 +118,10 @@ function start (options, callback) {
 	async.series([
 
 		function (cb) {
+			startSauceConnect(cb);
+		},
+
+		function (cb) {
 			if (runSelenium) {
 				runSeleniumInBackground(cb);
 			} else {
@@ -84,6 +131,10 @@ function start (options, callback) {
 
 		function (cb) {
 			runNightwatch(cb);
+		},
+
+		function (cb) {
+			stopSauceConnect(cb);
 		},
 
 	], function (err) {
