@@ -47,17 +47,19 @@ function runNightwatch (done) {
 	try {
 		Nightwatch.cli(function (argv) {
 			// Set app-specific env for nightwatch session
-			if (process.env.KNE_TEST_PATHS !== undefined && argv.test_paths !== undefined) {
+
+			// If possible, argv inputs and environment variables will be merged together
+			// If not, argv inputs will override environment variables.
+			if (process.env.KNE_TEST_PATHS && argv.test_paths) {
 				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
-			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths !== undefined) {
+			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths) {
 				process.env.KNE_TEST_PATHS = argv.test_paths;
 			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths === undefined) {
 				console.log('\nNo test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
 				done();
 			}
 			process.env.KNE_SELENIUM_SERVER = selenium.path;
-			process.env.KNE_GLOBALS_PATH = path.resolve(__dirname, 'globals.js');
-			if (process.env.KNE_PAGE_OBJECT_PATHS !== undefined) {
+			if (process.env.KNE_PAGE_OBJECT_PATHS) {
 				process.env.KNE_PAGE_OBJECT_PATHS += ',' + path.resolve(__dirname, 'lib/src/pageObjects/');
 			} else {
 				process.env.KNE_PAGE_OBJECT_PATHS = path.resolve(__dirname, 'lib/src/pageObjects/');
@@ -70,8 +72,10 @@ function runNightwatch (done) {
 			} else if (argv.exclude_paths !== undefined) {
 				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
 			}
-			process.env.KNE_SELENIUM_START_PROCESS = process.env.KNE_SELENIUM_START_PROCESS || true;
-			if (argv.selenium_start_process !== undefined) {
+			if (process.env.KNE_SELENIUM_START_PROCESS === undefined) {
+				process.env.KNE_SELENIUM_START_PROCESS = true; // Default value
+			}
+			if (argv.selenium_start_process) {
 				process.env.KNE_SELENIUM_START_PROCESS = argv.selenium_start_process;
 			}
 
