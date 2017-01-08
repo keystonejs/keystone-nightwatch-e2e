@@ -1,15 +1,13 @@
 {
-  "src_folders": [
-    "test/e2e/adminUI/tests"
-  ],
+  "src_folders": "Overridden in nightwatch.conf.js",
   "output_folder": "reports",
   "custom_commands_path": "",
   "custom_assertions_path": "",
-  "page_objects_path": ["${PAGE_OBJECTS_PATH}"],
-  "globals_path": "${GLOBALS_PATH}",
+  "page_objects_path": "Overridden in nightwatch.conf.js",
+  "globals_path": "${KNE_GLOBALS_PATH}",
   "selenium": {
-    "start_process": "${SELENIUM_START_PROCESS}",
-    "server_path": "${SELENIUM_SERVER}",
+    "start_process": "${KNE_SELENIUM_START_PROCESS}",
+    "server_path": "${KNE_SELENIUM_SERVER}",
     "log_path": "",
     "host": "127.0.0.1",
     "port": 4444,
@@ -34,10 +32,7 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true
       },
-      "exclude": [
-        "test/e2e/adminUI/tests/group006Fields/commonFieldTestUtils.js",
-        "test/e2e/adminUI/tests/group999FixMe/*"
-      ]
+      "exclude": ""
     },
     "saucelabs-travis": {
       "selenium_host": "ondemand.saucelabs.com",
@@ -81,53 +76,6 @@
       },
       "selenium": {
         "start_process": false
-      }
-    },
-    "chrome": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      }
-    },
-    "chrome-win32": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      },
-      "cli_args": {
-        "webdriver.chrome.driver": "test/e2e/drivers/chrome/win32/chromedriver.exe"
-      }
-    },
-    "chrome-mac32": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      },
-      "cli_args": {
-        "webdriver.chrome.driver": "test/e2e/drivers/chrome/mac32/chromedriver"
-      }
-    },
-    "chrome-linux64": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      },
-      "cli_args": {
-        "webdriver.chrome.driver": "test/e2e/drivers/chrome/linux64/chromedriver"
-      }
-    },
-    "chrome-linux32": {
-      "desiredCapabilities": {
-        "browserName": "chrome",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true
-      },
-      "cli_args": {
-        "webdriver.chrome.driver": "test/e2e/drivers/chrome/linux32/chromedriver"
       }
     }
   }

@@ -43,15 +43,38 @@ function runSeleniumInBackground (done) {
 function runNightwatch (done) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: running nightwatch...');
 
-	// Set app-specific env for nightwatch session
-	process.env.SELENIUM_SERVER = selenium.path;
-	process.env.PAGE_OBJECTS_PATH = path.resolve(__dirname, 'lib/src/pageObjects/');
-	process.env.GLOBALS_PATH = path.resolve(__dirname, 'globals.js');
-	process.env.SELENIUM_START_PROCESS = process.env.SELENIUM_START_PROCESS || true;
-
 	try {
 		Nightwatch.cli(function (argv) {
-			argv.config = path.resolve(__dirname, 'nightwatch.json');
+			// Set app-specific env for nightwatch session
+			if (process.env.KNE_TEST_PATHS !== undefined && argv.test_paths !== undefined) {
+				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
+			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths !== undefined) {
+				process.env.KNE_TEST_PATHS = argv.test_paths;
+			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths === undefined) {
+				console.log('\nNo test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
+				done();
+			}
+			process.env.KNE_SELENIUM_SERVER = selenium.path;
+			process.env.KNE_GLOBALS_PATH = path.resolve(__dirname, 'globals.js');
+			if (process.env.KNE_PAGE_OBJECT_PATHS !== undefined) {
+				process.env.KNE_PAGE_OBJECT_PATHS += ',' + path.resolve(__dirname, 'lib/src/pageObjects/');
+			} else {
+				process.env.KNE_PAGE_OBJECT_PATHS = path.resolve(__dirname, 'lib/src/pageObjects/');
+			}
+			if (argv.po_paths !== undefined) {
+				process.env.KNE_PAGE_OBJECT_PATHS += ',' + argv.popages;
+			}
+			if (process.env.KNE_EXCLUDE_TEST_PATHS === undefined) {
+				process.env.KNE_EXCLUDE_TEST_PATHS = ''; // Needs to be initialised for .split in conf.js file.
+			} else if (argv.exclude_paths !== undefined) {
+				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
+			}
+			process.env.KNE_SELENIUM_START_PROCESS = process.env.KNE_SELENIUM_START_PROCESS || true;
+			if (argv.selenium_start_process !== undefined) {
+				process.env.KNE_SELENIUM_START_PROCESS = argv.selenium_start_process;
+			}
+
+			argv.config = path.resolve(__dirname, 'nightwatch.conf.js');
 			Nightwatch.runner(argv, function () {
 				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: finished tests...');
 				done();
