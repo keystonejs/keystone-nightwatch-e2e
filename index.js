@@ -50,15 +50,16 @@ function runNightwatch (done) {
 
 			// If possible, argv inputs and environment variables will be merged together
 			// If not, argv inputs will override environment variables.
+			process.env.KNE_TEST_PATHS = process.env.KNE_TEST_PATHS || '';
 			if (argv.test_paths) {
 				// If argv.test_paths is set, add these paths to the environment variable
 				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
-			} else if (!process.env.KNE_TEST_PATHS) {
+			} else if (process.env.KNE_TEST_PATHS.equals('')) {
 				// If neither argv.test_paths nor the environment variable is set, throw an error.
 				var err = new Error('No test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
 				done(err);
 			}
-			process.env.KNE_SELENIUM_SERVER = selenium.path;
+			process.env.KNE_SELENIUM_SERVER = process.env.KNE_SELENIUM_SERVER || selenium.path;
 			if (process.env.KNE_PAGE_OBJECT_PATHS) {
 				process.env.KNE_PAGE_OBJECT_PATHS += ',' + path.resolve(__dirname, 'lib/src/pageObjects/');
 			} else {
@@ -73,12 +74,7 @@ function runNightwatch (done) {
 			} else if (argv.exclude_paths) {
 				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
 			}
-			if (process.env.KNE_SELENIUM_START_PROCESS === undefined) {
-				process.env.KNE_SELENIUM_START_PROCESS = true; // Default value
-			}
-			if (argv.selenium_start_process) {
-				process.env.KNE_SELENIUM_START_PROCESS = argv.selenium_start_process;
-			}
+			process.env.KNE_SELENIUM_START_PROCESS = process.env.KNE_SELENIUM_START_PROCESS || argv.selenium_start_process || true;
 
 			argv.config = path.resolve(__dirname, 'nightwatch.conf.js');
 			Nightwatch.runner(argv, function () {
