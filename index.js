@@ -54,7 +54,7 @@ function runNightwatch (done) {
 			if (argv.test_paths) {
 				// If argv.test_paths is set, add these paths to the environment variable
 				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
-			} else if (process.env.KNE_TEST_PATHS.equals('')) {
+			} else if (process.env.KNE_TEST_PATHS === '') {
 				// If neither argv.test_paths nor the environment variable is set, throw an error.
 				var err = new Error('No test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
 				done(err);
