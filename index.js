@@ -109,6 +109,7 @@ function startSauceConnect (done) {
 			accessKey: process.env.SAUCE_ACCESS_KEY,
 			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
 			connectRetries: 5,
+			connectRetryTimeout: 60000,
 			logger: sauceConnectLog,
 		}, function (err, sauceConnectProcess) {
 			if (err) {
