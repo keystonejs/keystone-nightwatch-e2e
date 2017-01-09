@@ -50,13 +50,13 @@ function runNightwatch (done) {
 
 			// If possible, argv inputs and environment variables will be merged together
 			// If not, argv inputs will override environment variables.
-			if (process.env.KNE_TEST_PATHS && argv.test_paths) {
+			if (argv.test_paths) {
+				// If argv.test_paths is set, add these paths to the environment variable
 				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
-			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths) {
-				process.env.KNE_TEST_PATHS = argv.test_paths;
-			} else if (process.env.KNE_TEST_PATHS === undefined && argv.test_paths === undefined) {
-				console.log('\nNo test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
-				done();
+			} else if (!process.env.KNE_TEST_PATHS) {
+				// If neither argv.test_paths nor the environment variable is set, throw an error.
+				var err = new Error('No test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
+				done(err);
 			}
 			process.env.KNE_SELENIUM_SERVER = selenium.path;
 			if (process.env.KNE_PAGE_OBJECT_PATHS) {
@@ -64,12 +64,13 @@ function runNightwatch (done) {
 			} else {
 				process.env.KNE_PAGE_OBJECT_PATHS = path.resolve(__dirname, 'lib/src/pageObjects/');
 			}
-			if (argv.po_paths !== undefined) {
-				process.env.KNE_PAGE_OBJECT_PATHS += ',' + argv.popages;
+			if (argv.po_paths) {
+				process.env.KNE_PAGE_OBJECT_PATHS += ',' + argv.po_paths;
 			}
-			if (process.env.KNE_EXCLUDE_TEST_PATHS === undefined) {
+
+			if (!process.env.KNE_EXCLUDE_TEST_PATHS) {
 				process.env.KNE_EXCLUDE_TEST_PATHS = ''; // Needs to be initialised for .split in conf.js file.
-			} else if (argv.exclude_paths !== undefined) {
+			} else if (argv.exclude_paths) {
 				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
 			}
 			if (process.env.KNE_SELENIUM_START_PROCESS === undefined) {
