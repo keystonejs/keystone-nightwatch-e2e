@@ -8,6 +8,7 @@ module.exports = (function (settings) {
 	settings.page_objects_path = process.env.KNE_PAGE_OBJECT_PATHS.split(',');
 	settings.test_settings.exclude = process.env.KNE_EXCLUDE_TEST_PATHS.split(',');
 	settings.globals_path = path.resolve(__dirname, 'globals.js');
+	settings.test_settings.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
 	return settings;
 
 })(require('./nightwatch.json'));
