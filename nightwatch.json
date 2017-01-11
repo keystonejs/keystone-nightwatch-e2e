@@ -27,7 +27,22 @@
       "desiredCapabilities": {
         "browserName": "firefox",
         "javascriptEnabled": true,
-        "acceptSslCerts": true
+        "acceptSslCerts": true,
+        "marionette": true
+      },
+      "cli_args": {
+        "webdriver.gecko.driver": ""
+      }
+    },
+    "firefox-windows": {
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "marionette": true
+      },
+      "cli_args": {
+        "webdriver.gecko.driver": ""
       }
     },
     "saucelabs-travis": {

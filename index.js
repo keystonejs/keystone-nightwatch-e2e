@@ -6,6 +6,7 @@ var child_process = require('child_process');
 var selenium = require('selenium-server-standalone-jar');
 var selenium_proc = null;
 var sauceConnectLauncher = require('sauce-connect-launcher');
+var isWin = /^win/.test(process.platform);
 
 /*
 On some machines, selenium fails with a timeout error when nightwatch tries to connect due to a
@@ -47,6 +48,10 @@ function runNightwatch (done) {
 	try {
 		Nightwatch.cli(function (argv) {
 			// Set app-specific env for nightwatch session
+
+			if (isWin && argv.env === 'default') {
+				argv.e = argv.env = 'firefox-windows';
+			}
 
 			// If possible, argv inputs and environment variables will be merged together
 			// If not, argv inputs will override environment variables.
