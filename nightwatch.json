@@ -62,7 +62,11 @@
       "desiredCapabilities": {
         "name": "test-firefox",
         "browserName": "firefox",
-        "tunnel-identifier": "${TRAVIS_JOB_NUMBER}"
+        "tunnel-identifier": "${TRAVIS_JOB_NUMBER}",
+        "marionette": true
+      },
+      "cli_args": {
+        "webdriver.gecko.driver": ""
       },
       "selenium": {
         "start_process": false
@@ -83,7 +87,11 @@
       },
       "desiredCapabilities": {
         "name": "test-firefox",
-        "browserName": "firefox"
+        "browserName": "firefox",
+        "marionette": true
+      },
+      "cli_args": {
+        "webdriver.gecko.driver": ""
       },
       "selenium": {
         "start_process": false

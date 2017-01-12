@@ -10,6 +10,8 @@ module.exports = (function (settings) {
 	settings.globals_path = path.resolve(__dirname, 'globals.js');
 	settings.test_settings['saucelabs-travis'].desiredCapabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
 	settings.test_settings.default.cli_args['webdriver.gecko.driver'] = path.resolve(__dirname, 'node_modules/.bin/geckodriver');
+	settings.test_settings['saucelabs-travis'].cli_args['webdriver.gecko.driver'] = path.resolve(__dirname, 'node_modules/.bin/geckodriver');
+	settings.test_settings['saucelabs-local'].cli_args['webdriver.gecko.driver'] = path.resolve(__dirname, 'node_modules/.bin/geckodriver');
 	settings.test_settings['firefox-windows'].cli_args['webdriver.gecko.driver'] = path.resolve(__dirname, 'node_modules/geckodriver/geckodriver.exe');
 	return settings;
 
