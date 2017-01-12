@@ -36,7 +36,7 @@
     "nightwatch": "^0.9.8",
     "path": "^0.12.7",
     "sauce-connect-launcher": "^1.1.1",
-    "selenium-server-standalone-jar": "^2.53.1"
+    "selenium-server-standalone-jar": "^3.0.1"
   },
   "devDependencies": {
     "docdash": "^0.4.0",
