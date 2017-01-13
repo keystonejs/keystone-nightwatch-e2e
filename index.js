@@ -15,7 +15,7 @@ from stdin until this issue is fixed in nightwatch:
 https://github.com/nightwatchjs/nightwatch/issues/470
 */
 function runSeleniumInBackground (done) {
-	console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: starting selenium server in background...');
+	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: starting selenium server in background...');
 	selenium_proc = child_process.spawn('java',
 		[
 			'-jar', selenium.path,
@@ -25,8 +25,7 @@ function runSeleniumInBackground (done) {
 		});
 	var running = false;
 
-	selenium_proc.stderr.on('data', function (buffer)
-	{
+	selenium_proc.stderr.on('data', function (buffer) {
 		var line = buffer.toString();
 		if (line.search(/Selenium Server is up and running/g) !== -1) {
 			running = true;
@@ -43,7 +42,7 @@ function runSeleniumInBackground (done) {
 
 // Function that starts the nightwatch service
 function runNightwatch (done) {
-	console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: running nightwatch...');
+	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: running nightwatch...');
 
 	try {
 		Nightwatch.cli(function (argv) {
@@ -83,7 +82,7 @@ function runNightwatch (done) {
 
 			argv.config = path.resolve(__dirname, 'nightwatch.conf.js');
 			Nightwatch.runner(argv, function () {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: finished tests...');
+				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: finished tests...');
 				done();
 			});
 		});
@@ -104,7 +103,7 @@ function sauceConnectLog (message) {
 // Function that starts the sauce connect servers if SAUCE_ACCESS_KEY is set.
 function startSauceConnect (done) {
 	if (process.env.SAUCE_ACCESS_KEY !== undefined) {
-		console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Starting Sauce Connect');
+		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Starting Sauce Connect');
 		sauceConnectLauncher({
 			username: process.env.SAUCE_USERNAME,
 			accessKey: process.env.SAUCE_ACCESS_KEY,
@@ -114,10 +113,10 @@ function startSauceConnect (done) {
 			logger: sauceConnectLog,
 		}, function (err, sauceConnectProcess) {
 			if (err) {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: There was an error starting Sauce Connect');
+				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: There was an error starting Sauce Connect');
 				done(err);
 			} else {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Ready');
+				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Ready');
 				sauceConnection = sauceConnectProcess;
 				sauceConnectionRunning = true;
 				done();
@@ -130,9 +129,9 @@ function startSauceConnect (done) {
 
 function stopSauceConnect (done) {
 	if (process.env.SAUCE_ACCESS_KEY !== undefined && sauceConnection !== null) {
-		console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Stopping Sauce Connect');
+		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Stopping Sauce Connect');
 		sauceConnection.close(function () {
-			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: Sauce Connect Stopped');
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Stopped');
 			sauceConnectionRunning = false;
 			done();
 		});
@@ -147,11 +146,15 @@ function stopSauceConnect (done) {
 	options:
 	{
 		keystone: <keystone instance>,		// REQUIRED
-		runSelenium: [ true | false ]		// DEFAULTS TO FALSE
+		runSelenium: [ true | false ]			// DEFAULTS TO FALSE
+		sauceConnect: [ true | false ]		// DEFAULTS TO TRUE
 	}
 */
 function start (options, callback) {
-	var runSelenium = options.runSelenium || false;
+	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: starting...');
+
+	var runSelenium = (options.runSelenium === undefined) ? false : options.runSelenium;
+	var sauceConnect = (options.sauceConnect === undefined) ? true : options.sauceConnect;
 
 	// add the keystone instance to the module exports so that the keystone-nightwatch-e2e library may use it
 	exports.keystone = options.keystone;
@@ -159,7 +162,11 @@ function start (options, callback) {
 	async.series([
 
 		function (cb) {
-			startSauceConnect(cb);
+			if (sauceConnect) {
+				startSauceConnect(cb);
+			} else {
+				cb();
+			}
 		},
 
 		function (cb) {
@@ -174,21 +181,18 @@ function start (options, callback) {
 			runNightwatch(cb);
 		},
 
-		function (cb) {
-			stopSauceConnect(cb);
-		},
-
 	], function (err) {
+		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: finishing...');
 		if (err) {
-			console.error([moment().format('HH:mm:ss:SSS')] + ' e2e: ' + err);
+			console.error([moment().format('HH:mm:ss:SSS')] + ' kne: finished with error\n' + err);
 		}
 		if (selenium_proc) {
-			console.error([moment().format('HH:mm:ss:SSS')] + ' e2e: terminating selenium process');
+			console.error([moment().format('HH:mm:ss:SSS')] + ' kne: terminating selenium process');
 			selenium_proc.kill('SIGTERM');
 			selenium_proc.kill('SIGKILL');
 		}
 		if (sauceConnectionRunning) {
-			console.log([moment().format('HH:mm:ss:SSS')] + ' e2e: something seems to have gone wrong, stopping sauce connect before travis shuts down');
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: something seems to have gone wrong, stopping sauce connect before travis shuts down');
 			stopSauceConnect(function () { callback && callback(err); });
 		} else {
 			callback && callback(err);
