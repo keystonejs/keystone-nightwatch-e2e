@@ -26,6 +26,7 @@
       },
       "desiredCapabilities": {
         "browserName": "firefox",
+        "version": "latest",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "marionette": true
@@ -37,6 +38,7 @@
     "firefox-windows": {
       "desiredCapabilities": {
         "browserName": "firefox",
+        "version": "latest",
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "marionette": true
@@ -62,6 +64,7 @@
       "desiredCapabilities": {
         "name": "test-firefox",
         "browserName": "firefox",
+        "version": "latest",
         "tunnel-identifier": "${TRAVIS_JOB_NUMBER}",
         "marionette": true
       },
@@ -78,6 +81,7 @@
       "username": "${SAUCE_USERNAME}",
       "access_key": "${SAUCE_ACCESS_KEY}",
       "use_ssl": false,
+      "startConnect": false,
       "silent": true,
       "output": true,
       "screenshots": {
@@ -88,6 +92,7 @@
       "desiredCapabilities": {
         "name": "test-firefox",
         "browserName": "firefox",
+        "version": "latest",
         "marionette": true
       },
       "cli_args": {
