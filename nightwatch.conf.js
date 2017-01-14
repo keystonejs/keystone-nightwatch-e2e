@@ -2,7 +2,8 @@ var path = require('path');
 
 module.exports = (function (settings) {
 	var isWindows = /^win/.test(process.platform);
-	var chromeDriver = isWindows ? path.join(__dirname, 'node_modules/chromedriver', 'chromedriver.exe') : path.join(__dirname, 'node_modules/chromedriver', 'chromedriver');
+	// TODO:  verify the chromedriver path in linux/mac
+	var chromeDriver = path.join(__dirname, 'node_modules/chromedriver/bin', 'chromedriver');
 	var geckoDriver = isWindows ? path.join(__dirname, 'node_modules/geckodriver/geckodriver.exe') : path.join(__dirname, 'node_modules/.bin/geckodriver');
 
 	// The following environment variables are set to comma separated strings in index.js
