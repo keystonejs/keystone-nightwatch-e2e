@@ -92,8 +92,13 @@ function runNightwatch (done) {
 				 */
 				function (cb) {
 					if (argv.env === 'default' && argv['selenium-in-background']) {
+						process.env.KNE_SELENIUM_START_PROCESS = false;
 						runSeleniumInBackground(cb);
+					} else if (argv.env === 'default') {
+						process.env.KNE_SELENIUM_START_PROCESS = true;
+						cb();
 					} else {
+						process.env.KNE_SELENIUM_START_PROCESS = false;
 						cb();
 					}
 				},
@@ -181,8 +186,7 @@ function stopSauceConnect (done) {
 
 	options:
 	{
-		keystone: <keystone instance>,		// REQUIRED
-		runSelenium: [ true | false ]			// DEFAULTS TO FALSE
+		keystone: <keystone instance>		// REQUIRED
 	}
 */
 function start (options, callback) {
@@ -191,13 +195,7 @@ function start (options, callback) {
 	// add the keystone instance to the module exports so that the keystone-nightwatch-e2e library may use it
 	exports.keystone = options.keystone;
 
-	async.series([
-
-		function (cb) {
-			runNightwatch(cb);
-		},
-
-	], function (err) {
+	runNightwatch(function (err) {
 		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: finishing...');
 		if (err) {
 			console.error([moment().format('HH:mm:ss:SSS')] + ' kne: finished with error\n' + err);
@@ -219,7 +217,6 @@ function start (options, callback) {
 // exported e2e framework service
 exports = module.exports = {
 	startE2E: start,
-	seleniumPath: selenium.path,
 	pageObjectsPath: path.resolve(__dirname, 'lib/src/pageObjects/'),
 	fieldTestObjectsPath: path.resolve(__dirname, 'lib/src/fieldTestObjects'),
 };
