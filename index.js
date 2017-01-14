@@ -6,7 +6,6 @@ var child_process = require('child_process');
 var selenium = require('selenium-server-standalone-jar');
 var selenium_proc = null;
 var sauceConnectLauncher = require('sauce-connect-launcher');
-var isWin = /^win/.test(process.platform);
 
 /*
 On some machines, selenium fails with a timeout error when nightwatch tries to connect due to a
@@ -47,9 +46,14 @@ function runNightwatch (done) {
 	try {
 		Nightwatch.cli(function (argv) {
 			// Set app-specific env for nightwatch session
+			process.env.KNE_TEST_ENV = argv.env;
+			
+			if (argv['browser-name']) {
+				process.env.KNE_BROWSER_NAME = argv['browser-name'];
+			}
 
-			if (isWin && argv.env === 'default') {
-				argv.e = argv.env = 'firefox-windows';
+			if (argv['browser-version']) {
+				process.env.KNE_BROWSER_VERSION = argv['browser-version'];
 			}
 
 			// If possible, argv inputs and environment variables will be merged together
@@ -78,12 +82,48 @@ function runNightwatch (done) {
 			} else if (argv.exclude_paths) {
 				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
 			}
-			process.env.KNE_SELENIUM_START_PROCESS = process.env.KNE_SELENIUM_START_PROCESS || argv.selenium_start_process || true;
 
 			argv.config = path.resolve(__dirname, 'nightwatch.conf.js');
-			Nightwatch.runner(argv, function () {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: finished tests...');
-				done();
+
+			async.series([
+
+				/**
+				 * If the user wants us to start selenium manually then do so
+				 */
+				function (cb) {
+					if (argv.env === 'default' && argv['selenium-in-background']) {
+						runSeleniumInBackground(cb);
+					} else {
+						cb();
+					}
+				},
+
+				/**
+				 * The only environment that currently requires starting sauce connect is travis.
+				 */
+				function (cb) {
+					if (argv.env === 'saucelabs-travis') {
+						startSauceConnect(cb);
+					} else {
+						cb();
+					}
+				},
+
+				/**
+				 * Run nightwatch to start executing the tests
+				 */
+				function (cb) {
+					Nightwatch.runner(argv, function (status) {
+						if (status) {
+							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests passed');
+						} else {
+							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests failed');
+						}
+						cb();
+					});
+				}
+			], function (err) {
+				done(err);
 			});
 		});
 	} catch (ex) {
@@ -102,29 +142,25 @@ function sauceConnectLog (message) {
 
 // Function that starts the sauce connect servers if SAUCE_ACCESS_KEY is set.
 function startSauceConnect (done) {
-	if (process.env.SAUCE_ACCESS_KEY !== undefined) {
-		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Starting Sauce Connect');
-		sauceConnectLauncher({
-			username: process.env.SAUCE_USERNAME,
-			accessKey: process.env.SAUCE_ACCESS_KEY,
-			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-			connectRetries: 5,
-			connectRetryTimeout: 60000,
-			logger: sauceConnectLog,
-		}, function (err, sauceConnectProcess) {
-			if (err) {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: There was an error starting Sauce Connect');
-				done(err);
-			} else {
-				console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Ready');
-				sauceConnection = sauceConnectProcess;
-				sauceConnectionRunning = true;
-				done();
-			}
-		});
-	} else {
-		done();
-	}
+	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Starting Sauce Connect');
+	sauceConnectLauncher({
+		username: process.env.SAUCE_USERNAME,
+		accessKey: process.env.SAUCE_ACCESS_KEY,
+		tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+		connectRetries: 5,
+		connectRetryTimeout: 60000,
+		logger: sauceConnectLog,
+	}, function (err, sauceConnectProcess) {
+		if (err) {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: There was an error starting Sauce Connect');
+			done(err);
+		} else {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Ready');
+			sauceConnection = sauceConnectProcess;
+			sauceConnectionRunning = true;
+			done();
+		}
+	});
 }
 
 function stopSauceConnect (done) {
@@ -147,35 +183,15 @@ function stopSauceConnect (done) {
 	{
 		keystone: <keystone instance>,		// REQUIRED
 		runSelenium: [ true | false ]			// DEFAULTS TO FALSE
-		sauceConnect: [ true | false ]		// DEFAULTS TO TRUE
 	}
 */
 function start (options, callback) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: starting...');
 
-	var runSelenium = (options.runSelenium === undefined) ? false : options.runSelenium;
-	var sauceConnect = (options.sauceConnect === undefined) ? true : options.sauceConnect;
-
 	// add the keystone instance to the module exports so that the keystone-nightwatch-e2e library may use it
 	exports.keystone = options.keystone;
 
 	async.series([
-
-		function (cb) {
-			if (sauceConnect) {
-				startSauceConnect(cb);
-			} else {
-				cb();
-			}
-		},
-
-		function (cb) {
-			if (runSelenium) {
-				runSeleniumInBackground(cb);
-			} else {
-				cb();
-			}
-		},
 
 		function (cb) {
 			runNightwatch(cb);

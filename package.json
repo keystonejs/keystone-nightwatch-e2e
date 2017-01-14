@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "async": "^2.0.1",
+    "chromedriver": "^2.27.2",
     "geckodriver": "^1.3.0",
     "i": "^0.3.5",
     "keystone-utils": "^0.4.0",

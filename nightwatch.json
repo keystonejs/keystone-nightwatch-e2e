@@ -10,14 +10,13 @@
     "port": 4444,
     "cli_args": {
       "webdriver.chrome.driver": "",
+      "webdriver.gecko.driver": "",
       "webdriver.ie.driver": ""
     }
   },
   "test_settings": {
     "default": {
       "launch_url": "http://localhost",
-      "selenium_host": "127.0.0.1",
-      "selenium_port": 4444,
       "silent": true,
       "disable_colors": false,
       "screenshots": {
@@ -30,21 +29,6 @@
         "javascriptEnabled": true,
         "acceptSslCerts": true,
         "marionette": true
-      },
-      "cli_args": {
-        "webdriver.gecko.driver": ""
-      }
-    },
-    "firefox-windows": {
-      "desiredCapabilities": {
-        "browserName": "firefox",
-        "version": "latest",
-        "javascriptEnabled": true,
-        "acceptSslCerts": true,
-        "marionette": true
-      },
-      "cli_args": {
-        "webdriver.gecko.driver": ""
       }
     },
     "saucelabs-travis": {
@@ -67,9 +51,6 @@
         "version": "latest",
         "tunnel-identifier": "${TRAVIS_JOB_NUMBER}",
         "marionette": true
-      },
-      "cli_args": {
-        "webdriver.gecko.driver": ""
       },
       "selenium": {
         "start_process": false
@@ -94,9 +75,6 @@
         "browserName": "firefox",
         "version": "latest",
         "marionette": true
-      },
-      "cli_args": {
-        "webdriver.gecko.driver": ""
       },
       "selenium": {
         "start_process": false
