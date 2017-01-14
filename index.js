@@ -47,7 +47,7 @@ function runNightwatch (done) {
 		Nightwatch.cli(function (argv) {
 			// Set app-specific env for nightwatch session
 			process.env.KNE_TEST_ENV = argv.env;
-			
+
 			if (argv['browser-name']) {
 				process.env.KNE_BROWSER_NAME = argv['browser-name'];
 			}
@@ -121,7 +121,7 @@ function runNightwatch (done) {
 						}
 						cb();
 					});
-				}
+				},
 			], function (err) {
 				done(err);
 			});
