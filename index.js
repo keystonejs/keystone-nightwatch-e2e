@@ -120,7 +120,7 @@ function runNightwatch (done) {
 					} else {
 						if (argv.env === 'saucelabs-local') {
 							console.error([moment().format('HH:mm:ss:SSS')] + ' kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env);
-							cb(new Error('kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env))
+							cb(new Error('kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env));
 						} else {
 							cb();
 						}
@@ -177,7 +177,7 @@ function startSauceConnect (done) {
 		? {
 			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
 		} : {
-		}
+		};
 	var options = _.extend({}, default_options, custom_options);
 
 	sauceConnectLauncher(options, function (err, sauceConnectProcess) {
