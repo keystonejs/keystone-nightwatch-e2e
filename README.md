@@ -22,9 +22,18 @@ KNE may also be passed additional options that control its behavior:
 
 | Option Name               | Description   |
 | ------------------------- | --------------|
-| --selenium-in-background  | This option tells KNE to start the selenium server manually, instead of letting Nightwatch start it.  Some users in some unix-based platforms have had issues with Nightwatch starting selenium.  |
-| --browser-name            | Locally on "firefox" and "chrome" are supported.  Please see [SauceLab's Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) for supported browser names. |
-| --browser-version         | Applies to SauceLabs runs only.  Locally it will run whatever browser version is installed.  Please see [SauceLab's Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) for supported versions. You may also specify "latest". |
+| --selenium-in-background  | This option tells KNE to start the selenium server manually, instead of letting Nightwatch start it. Some users in some unix-based platforms have had issues with Nightwatch starting selenium.  |
+| --browser-name            | Locally on "firefox" and "chrome" are supported. Please see [SauceLab's Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) for supported browser names. |
+| --browser-version         | Applies to SauceLabs runs only. Locally it will run whatever browser version is installed.  Please see [SauceLab's Platform Configurator](https://wiki.saucelabs.com/display/DOCS/Platform+Configurator#/) for supported versions. You may also specify "latest". |
+| --env                     | The nightwatch context to use. Should be one of:  `default`, `saucelabs-local`, `saucelabs-travis`.  If not specified, `default` is used.  For local dev testing either `default` or `saucelabs-local` should be used. `saucelabs-travis` should be reserved for travis builds. |
+| --sauce-username          | The SauceLabs user name to create a secured tunnel with SauceLabs. Should be used in combination with `--env saucelabs-local` or `--env saucelabs-travis` to perform testing against SauceLabs. You need a SauceLabs account to use this option. |
+| --sauce-access-key        | The SauceLabs access key to create a secured tunnel with SauceLabs. Should be used in combination with `--env saucelabs-local` or `--env saucelabs-travis` to perform testing against SauceLabs. You need a SauceLabs account to use this option. |
+SauceLabs account to use this option. |
+| --group                   | The test group to run. This is nightwatch terminology. Please see [NightwatchJS Test Runner](http://nightwatchjs.org/guide#test-runner) for on this and other options. |
+| --test                    | The test to run. This is nightwatch terminology. Please see [NightwatchJS Test Runner](http://nightwatchjs.org/guide#test-runner) for on this and other options. |
+
+For example:
+
 
 ## Overview
 This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.

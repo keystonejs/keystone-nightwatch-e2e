@@ -1,3 +1,4 @@
+var _ = require('lodash');
 var path = require('path');
 var async = require('async');
 var moment = require('moment');
@@ -64,8 +65,7 @@ function runNightwatch (done) {
 				process.env.KNE_TEST_PATHS += ',' + argv.test_paths;
 			} else if (process.env.KNE_TEST_PATHS === '') {
 				// If neither argv.test_paths nor the environment variable is set, throw an error.
-				var err = new Error('No test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable');
-				done(err);
+				done(new Error('No test paths provided. Either set the --test_paths config option or the KNE_TEST_PATHS environment variable'));
 			}
 			process.env.KNE_SELENIUM_SERVER = process.env.KNE_SELENIUM_SERVER || selenium.path;
 			if (process.env.KNE_PAGE_OBJECT_PATHS) {
@@ -81,6 +81,14 @@ function runNightwatch (done) {
 				process.env.KNE_EXCLUDE_TEST_PATHS = ''; // Needs to be initialised for .split in conf.js file.
 			} else if (argv.exclude_paths) {
 				process.env.KNE_EXCLUDE_TEST_PATHS += ',' + argv.exclude_paths;
+			}
+
+			if (argv.env === 'saucelabs-local' && argv['sauce-username'] && argv['sauce-access-key']) {
+				process.env.SAUCE_USERNAME = argv['sauce-username'];
+				process.env.SAUCE_ACCESS_KEY = argv['sauce-access-key'];
+				// TODO:  tried to set a TRAVIS_JOB_NUMBER here to something like --sauce-tunnel-id but it just
+				//		doesn't work, at least, not in my dev environment.  Something to look into later.  For right
+				//		now the default tunnel name will do.
 			}
 
 			argv.config = path.resolve(__dirname, 'nightwatch.conf.js');
@@ -107,10 +115,15 @@ function runNightwatch (done) {
 				 * The only environment that currently requires starting sauce connect is travis.
 				 */
 				function (cb) {
-					if (argv.env === 'saucelabs-travis') {
+					if ((argv.env === 'saucelabs-travis' || argv.env === 'saucelabs-local') && argv['sauce-username'] && argv['sauce-access-key']) {
 						startSauceConnect(cb);
 					} else {
-						cb();
+						if (argv.env === 'saucelabs-travis' || argv.env === 'saucelabs-local') {
+							console.error([moment().format('HH:mm:ss:SSS')] + ' kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env);
+							cb(new Error('kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env))
+						} else {
+							cb();
+						}
 					}
 				},
 
@@ -128,6 +141,9 @@ function runNightwatch (done) {
 					});
 				},
 			], function (err) {
+				if (err) {
+					console.error(err);
+				}
 				done(err);
 			});
 		});
@@ -148,22 +164,31 @@ function sauceConnectLog (message) {
 // Function that starts the sauce connect servers if SAUCE_ACCESS_KEY is set.
 function startSauceConnect (done) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Starting Sauce Connect');
-	sauceConnectLauncher({
+
+	var default_options = {
 		username: process.env.SAUCE_USERNAME,
 		accessKey: process.env.SAUCE_ACCESS_KEY,
-		tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
 		connectRetries: 5,
 		connectRetryTimeout: 60000,
 		logger: sauceConnectLog,
-	}, function (err, sauceConnectProcess) {
+		readyFileId: process.env.TRAVIS_JOB_NUMBER,
+	};
+	var custom_options = process.env.TRAVIS_JOB_NUMBER
+		? {
+			tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+		} : {
+		}
+	var options = _.extend({}, default_options, custom_options);
+
+	sauceConnectLauncher(options, function (err, sauceConnectProcess) {
 		if (err) {
-			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: There was an error starting Sauce Connect');
+			console.error([moment().format('HH:mm:ss:SSS')] + ' kne: There was an error starting Sauce Connect');
 			done(err);
 		} else {
 			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Ready');
 			sauceConnection = sauceConnectProcess;
 			sauceConnectionRunning = true;
-			done();
+			setTimeout(done, 5000);
 		}
 	});
 }
@@ -174,7 +199,7 @@ function stopSauceConnect (done) {
 		sauceConnection.close(function () {
 			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: Sauce Connect Stopped');
 			sauceConnectionRunning = false;
-			done();
+			setTimeout(done, 60000);
 		});
 	} else {
 		done();
