@@ -115,10 +115,10 @@ function runNightwatch (done) {
 				 * The only environment that currently requires starting sauce connect is travis.
 				 */
 				function (cb) {
-					if ((argv.env === 'saucelabs-travis' || argv.env === 'saucelabs-local') && argv['sauce-username'] && argv['sauce-access-key']) {
+					if (argv.env === 'saucelabs-travis' || (argv.env === 'saucelabs-local' && argv['sauce-username'] && argv['sauce-access-key'])) {
 						startSauceConnect(cb);
 					} else {
-						if (argv.env === 'saucelabs-travis' || argv.env === 'saucelabs-local') {
+						if (argv.env === 'saucelabs-local') {
 							console.error([moment().format('HH:mm:ss:SSS')] + ' kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env);
 							cb(new Error('kne: You must specify --sauce-username and --sauce-access-key when using: --' + argv.env))
 						} else {
