@@ -32,6 +32,7 @@ module.exports = (function (settings) {
 		+ '\n\tenvironment: ' + process.env.KNE_TEST_ENV
 		+ '\n\tbrowser name: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.browserName
 		+ '\n\tbrowser version: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.version
+		+ '\n\tjob number: ' + process.env.TRAVIS_JOB_NUMBER
 	);
 
 	return settings;
