@@ -1,5 +1,5 @@
 # Keystone End-2-End Functional Testing Framework
-In this README we will refer to the Keystone Nightwatch E2E framework simply as KNE.
+The Keystone Nightwatch E2E framework (or simply KNE) is an end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.
 
 ## Installation
 `npm install keystone-nightwatch-e2e --save-dev`
@@ -45,7 +45,6 @@ NOTES on examples:
 
 
 ## Overview
-This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.
 UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application as well as
 ensures that KeystoneJS itself has not regressed on the application functionality.  The tests use a real keystone
 application and should do so with as much available configuration as possible.  Please note that this is not a
@@ -59,10 +58,10 @@ we outline all you need to do to get started.
 
 
 ## Application Test Environment Setup
-For a sample e2e test setup, please refer to the one in the {@link https://github.com/keystonejs/keystone/tree/master/test/e2e|KeystoneJS repo}
+For a sample e2e test setup, please refer to the one in [KeystoneJS](https://github.com/keystonejs/keystone/tree/master/test/e2e)
 that is used for testing the KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
 updating it per your application requirements is considered a reasonable approach to get started. The following is an overview
-of a simple test application setup:
+of a simple KNE test application setup:
 
     test/e2e
         testApp.js                              => your main test app server (requires and starts KNE)
