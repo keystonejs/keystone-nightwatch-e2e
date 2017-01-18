@@ -5,7 +5,7 @@ In this README we will refer to the Keystone Nightwatch E2E framework simply as 
 `npm install keystone-nightwatch-e2e --save-dev`
 
 ## Running
-Before running the KNE ensure that your keystone application is up and running.
+Before running KNE ensure that your keystone application is up and running.
 To run KNE do the following in your test application.
 
         var keystoneNightwatchE2e = require('keystone-nightwatch-e2e');
@@ -28,11 +28,20 @@ KNE may also be passed additional options that control its behavior:
 | --env                     | The nightwatch context to use. Should be one of:  `default`, `saucelabs-local`, `saucelabs-travis`.  If not specified, `default` is used.  For local dev testing either `default` or `saucelabs-local` should be used. `saucelabs-travis` should be reserved for travis builds. |
 | --sauce-username          | The SauceLabs user name to create a secured tunnel with SauceLabs. Should be used in combination with `--env saucelabs-local` or `--env saucelabs-travis` to perform testing against SauceLabs. You need a SauceLabs account to use this option. |
 | --sauce-access-key        | The SauceLabs access key to create a secured tunnel with SauceLabs. Should be used in combination with `--env saucelabs-local` or `--env saucelabs-travis` to perform testing against SauceLabs. You need a SauceLabs account to use this option. |
-SauceLabs account to use this option. |
 | --group                   | The test group to run. This is nightwatch terminology. Please see [NightwatchJS Test Runner](http://nightwatchjs.org/guide#test-runner) for on this and other options. |
 | --test                    | The test to run. This is nightwatch terminology. Please see [NightwatchJS Test Runner](http://nightwatchjs.org/guide#test-runner) for on this and other options. |
 
-For example:
+Examples:
+- node test/e2e/testApp.js --browser-name chrome --group test/e2e/group000
+- node test/e2e/testApp.js --browser-name firefox --test test/e2e/group000/test1.js
+- node test/e2e/testApp.js --env saucelabs-local --browser-name chrome --sauce-username MYUSERNAME --sauce-access-key MYACCESSKEY --group test/e2e/group000
+- node test/e2e/testApp.js --env saucelabs-local --browser-name firefox --browser-version 50 --sauce-username MYUSERNAME --sauce-access-key MYACCESSKEY
+
+NOTES on examples:
+- The first example, runs the group000 tests in chrome in your localhost
+- The second example, runs the group000/test1 test in firefox in your localhost
+- The third example, runs the group000/test1 test in the latest version of chrome in SauceLabs
+- The fourth example, runs all the e2e tests in version 50 of firefox in SauceLabs
 
 
 ## Overview
@@ -53,50 +62,23 @@ we outline all you need to do to get started.
 For a sample e2e test setup, please refer to the one in the {@link https://github.com/keystonejs/keystone/tree/master/test/e2e|KeystoneJS repo}
 that is used for testing the KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
 updating it per your application requirements is considered a reasonable approach to get started. The following is an overview
-of that setup and highlights what you may change in your own setup.  It may seem a bit daunting at first to take this setup on.
-However, realize that it is a one time setup and one that you will run over and over to ensure your application is protected
-against regressions due to either your own changes and/or changes to the keystone platform that may break your application.
+of a simple test application setup:
 
     test/e2e
-        global.js                               => common nightwatch test environment config
-
-        server.js                               => keystone app server (update per your application requirements -- see notes below)
+        testApp.js                              => your main test app server (requires and starts KNE)
 
         adminUI                                 => adminUI e2e test suite
-            nightwatch.json                     => nightwatch config (nightwatch starts the selenium server)
-            nightwatch-no-process.json          => nightwatch config (the e2e framework starts the selenium server)
             tests                               => directory to group all e2e tests
-                groupNNN<group-name>            => adminUI test group, where NNN is a group sequence number (add your own groups)
-                    uiTest<test-name>           => UI test suite (add your own UI tests)
-                    uxTest<test-name>           => UX/functional test suite (add your own UX tests)
-
-        drivers
-            <browser drivers>                   => all required browser drivers
-
-        frontend                                => frontend pages (you probably don't need this as you already should have these already defined)
-            <page content>                      => these are your application frontend pages
-
+                group000                        => a test group (000 is the group number)
+                        test1.js                => first test in test group 000
+                        test2.js                => second test in test group 000
+                        test3.js                => third test in test group 000
+                        ...
+                        testMMM.js
+                ...
+                groupNNN
         modelTestConfig                         => describe your application models to the test framework
-           ...                                  => use the existing ones as guidelines
+           ...                                  => use the KeystoneJS e2e test ones as a guide
 
-        models                                  => all application list models (you probably don't need this as you already should have these already defined)
+        models                                  => test application models
            ...                                  
-
-        routes                                  => frontend routes (you probably don't need this as you already should have these already defined)
-            <route content>                     => these are your application frontend pages
-
-        updates                                 => all schema update/migration files (you probably don't need this as you already should have these already defined)
-           <update scripts>                     => keystone updates
-
-Notes on the setup above:
-- The server.js component is most likely the one that you will need to give the most attention to.  This component needs to require/use
-this framework.  The following lines in the server.js version in the keystonejs repo highlight the critical interaction 
-with this framework.  
-
-- The models, routes, and updates you should have already define in your keystone application.
-- Breaking things into groups helps with grouping functionality that may be ran together whenever a change is done to your
-KeystoneJS application.  In that case, you would just test that group, instead of the entire test suite.
-- In the KeystoneJS repo, we decided to separate UI and UX aspects into their own test files.  You may choose to combine the
-two into a single test.
-- Nightwatch uses selenium to carry on the functional testing.  As such, you may need to install appropriate drivers for the
-browser you intend to test with.

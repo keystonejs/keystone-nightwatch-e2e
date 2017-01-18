@@ -2,9 +2,10 @@ var path = require('path');
 
 module.exports = (function (settings) {
 	var isWindows = /^win/.test(process.platform);
-	// TODO:  verify the chromedriver path in linux/mac
-	var chromeDriver = isWindows ? path.join(__dirname, 'node_modules/chromedriver/lib/chromedriver', 'chromedriver.exe') : path.join(__dirname, 'node_modules/chromedriver/lib/chromedriver', 'chromedriver');
-	var geckoDriver = isWindows ? path.join(__dirname, 'node_modules/geckodriver/geckodriver.exe') : path.join(__dirname, 'node_modules/.bin/geckodriver');
+	var chromedriverPath = require.resolve('chromedriver');
+	var geckoDriverPath = require.resolve('geckodriver');
+	var chromeDriver = isWindows ? path.join(chromedriverPath, '../chromedriver', 'chromedriver.exe') : path.join(chromedriverPath, '../chromedriver', 'chromedriver');
+	var geckoDriver = isWindows ? path.join(geckoDriverPath, '../..', 'geckodriver.exe') : path.join(geckoDriverPath, '../..', 'geckodriver');
 
 	// The following environment variables are set to comma separated strings in index.js
 	// Here we will convert them to an array, as required by nightwatch.
