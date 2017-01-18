@@ -48,7 +48,7 @@
     <section class="readme">
         <article><h1>Keystone End-2-End Functional Testing Framework</h1><p>In this README we will refer to the Keystone Nightwatch E2E framework simply as KNE.</p>
 <h2>Installation</h2><p><code>npm install keystone-nightwatch-e2e --save-dev</code></p>
-<h2>Running</h2><p>Before running the KNE ensure that your keystone application is up and running.
+<h2>Running</h2><p>Before running KNE ensure that your keystone application is up and running.
 To run KNE do the following in your test application.</p>
 <pre class="prettyprint source"><code>    var keystoneNightwatchE2e = require('keystone-nightwatch-e2e');
     keystoneNightwatchE2e.startE2E(options, done);
@@ -90,12 +90,30 @@ To run KNE do the following in your test application.</p>
 <td>--sauce-access-key</td>
 <td>The SauceLabs access key to create a secured tunnel with SauceLabs. Should be used in combination with <code>--env saucelabs-local</code> or <code>--env saucelabs-travis</code> to perform testing against SauceLabs. You need a SauceLabs account to use this option.</td>
 </tr>
+<tr>
+<td>--group</td>
+<td>The test group to run. This is nightwatch terminology. Please see <a href="http://nightwatchjs.org/guide#test-runner">NightwatchJS Test Runner</a> for on this and other options.</td>
+</tr>
+<tr>
+<td>--test</td>
+<td>The test to run. This is nightwatch terminology. Please see <a href="http://nightwatchjs.org/guide#test-runner">NightwatchJS Test Runner</a> for on this and other options.</td>
+</tr>
 </tbody>
 </table>
-<p>SauceLabs account to use this option. |
-| --group                   | The test group to run. This is nightwatch terminology. Please see <a href="http://nightwatchjs.org/guide#test-runner">NightwatchJS Test Runner</a> for on this and other options. |
-| --test                    | The test to run. This is nightwatch terminology. Please see <a href="http://nightwatchjs.org/guide#test-runner">NightwatchJS Test Runner</a> for on this and other options. |</p>
-<p>For example:</p>
+<p>Examples:</p>
+<ul>
+<li>node test/e2e/testApp.js --browser-name chrome --group test/e2e/group000</li>
+<li>node test/e2e/testApp.js --browser-name firefox --test test/e2e/group000/test1.js</li>
+<li>node test/e2e/testApp.js --env saucelabs-local --browser-name chrome --sauce-username MYUSERNAME --sauce-access-key MYACCESSKEY --group test/e2e/group000</li>
+<li>node test/e2e/testApp.js --env saucelabs-local --browser-name firefox --browser-version 50 --sauce-username MYUSERNAME --sauce-access-key MYACCESSKEY</li>
+</ul>
+<p>NOTES on examples:</p>
+<ul>
+<li>The first example, runs the group000 tests in chrome in your localhost</li>
+<li>The second example, runs the group000/test1 test in firefox in your localhost</li>
+<li>The third example, runs the group000/test1 test in the latest version of chrome in SauceLabs</li>
+<li>The fourth example, runs all the e2e tests in version 50 of firefox in SauceLabs</li>
+</ul>
 <h2>Overview</h2><p>This is an overview of the end-2-end UI/functional testing framework for KeystoneJS and keystoneJS applications.
 UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application as well as
 ensures that KeystoneJS itself has not regressed on the application functionality.  The tests use a real keystone
@@ -110,53 +128,25 @@ we outline all you need to do to get started.</p>
 <h2>Application Test Environment Setup</h2><p>For a sample e2e test setup, please refer to the one in the <a href="https://github.com/keystonejs/keystone/tree/master/test/e2e">KeystoneJS repo</a>
 that is used for testing the KeystoneJS AdminUI functionality.  Using that structure as a guide in your own application and
 updating it per your application requirements is considered a reasonable approach to get started. The following is an overview
-of that setup and highlights what you may change in your own setup.  It may seem a bit daunting at first to take this setup on.
-However, realize that it is a one time setup and one that you will run over and over to ensure your application is protected
-against regressions due to either your own changes and/or changes to the keystone platform that may break your application.</p>
+of a simple test application setup:</p>
 <pre class="prettyprint source"><code>test/e2e
-    global.js                               => common nightwatch test environment config
-
-    server.js                               => keystone app server (update per your application requirements -- see notes below)
+    testApp.js                              => your main test app server (requires and starts KNE)
 
     adminUI                                 => adminUI e2e test suite
-        nightwatch.json                     => nightwatch config (nightwatch starts the selenium server)
-        nightwatch-no-process.json          => nightwatch config (the e2e framework starts the selenium server)
         tests                               => directory to group all e2e tests
-            groupNNN&lt;group-name>            => adminUI test group, where NNN is a group sequence number (add your own groups)
-                uiTest&lt;test-name>           => UI test suite (add your own UI tests)
-                uxTest&lt;test-name>           => UX/functional test suite (add your own UX tests)
-
-    drivers
-        &lt;browser drivers>                   => all required browser drivers
-
-    frontend                                => frontend pages (you probably don't need this as you already should have these already defined)
-        &lt;page content>                      => these are your application frontend pages
-
+            group000                        => a test group (000 is the group number)
+                    test1.js                => first test in test group 000
+                    test2.js                => second test in test group 000
+                    test3.js                => third test in test group 000
+                    ...
+                    testMMM.js
+            ...
+            groupNNN
     modelTestConfig                         => describe your application models to the test framework
-       ...                                  => use the existing ones as guidelines
+       ...                                  => use the KeystoneJS e2e test ones as a guide
 
-    models                                  => all application list models (you probably don't need this as you already should have these already defined)
-       ...                                  
-
-    routes                                  => frontend routes (you probably don't need this as you already should have these already defined)
-        &lt;route content>                     => these are your application frontend pages
-
-    updates                                 => all schema update/migration files (you probably don't need this as you already should have these already defined)
-       &lt;update scripts>                     => keystone updates</code></pre><p>Notes on the setup above:</p>
-<ul>
-<li><p>The server.js component is most likely the one that you will need to give the most attention to.  This component needs to require/use
-this framework.  The following lines in the server.js version in the keystonejs repo highlight the critical interaction 
-with this framework.  </p>
-</li>
-<li><p>The models, routes, and updates you should have already define in your keystone application.</p>
-</li>
-<li>Breaking things into groups helps with grouping functionality that may be ran together whenever a change is done to your
-KeystoneJS application.  In that case, you would just test that group, instead of the entire test suite.</li>
-<li>In the KeystoneJS repo, we decided to separate UI and UX aspects into their own test files.  You may choose to combine the
-two into a single test.</li>
-<li>Nightwatch uses selenium to carry on the functional testing.  As such, you may need to install appropriate drivers for the
-browser you intend to test with.</li>
-</ul></article>
+    models                                  => test application models
+       ...                                  </code></pre></article>
     </section>
 
 
@@ -169,7 +159,7 @@ browser you intend to test with.</li>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jan 17 2017 04:41:21 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Wed Jan 18 2017 01:13:59 GMT+0000 (UTC) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
