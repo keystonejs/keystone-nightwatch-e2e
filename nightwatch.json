@@ -23,7 +23,7 @@
         "path": ""
       },
       "desiredCapabilities": {
-        "browserName": "firefox",
+        "browserName": "chrome",
         "version": "latest",
         "javascriptEnabled": true,
         "acceptSslCerts": true,

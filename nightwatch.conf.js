@@ -17,10 +17,6 @@ module.exports = (function (settings) {
 	settings.selenium.cli_args['webdriver.chrome.driver'] = chromeDriver;
 	settings.selenium.cli_args['webdriver.gecko.driver'] = geckoDriver;
 
-	if (process.env.TRAVIS_JOB_NUMBER) {
-		settings.test_settings['saucelabs-travis'].desiredCapabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
-	}
-
 	if (process.env.KNE_BROWSER_NAME) {
 		settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.browserName = process.env.KNE_BROWSER_NAME;
 	}
@@ -30,10 +26,13 @@ module.exports = (function (settings) {
 	}
 
 	console.log('nightwatch settings:'
-		+ '\n\tenvironment: ' + process.env.KNE_TEST_ENV
-		+ '\n\tbrowser name: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.browserName
-		+ '\n\tbrowser version: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.version
-		+ '\n\tjob number: ' + process.env.TRAVIS_JOB_NUMBER
+		+ '\n\tNightwatch Environment: ' + process.env.KNE_TEST_ENV
+		+ '\n\tNightwatch Start Selenium: ' + process.env.KNE_SELENIUM_START_PROCESS
+		+ '\n\tBrowser Name: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.browserName
+		+ '\n\tBrowser Version: ' + settings.test_settings[process.env.KNE_TEST_ENV].desiredCapabilities.version
+		+ '\n\tSauceLabs Tunnel Id: ' + process.env.TRAVIS_JOB_NUMBER
+		+ '\n\tChromeDriver: ' + settings.selenium.cli_args['webdriver.chrome.driver']
+		+ '\n\tgeckoDriver: ' + settings.selenium.cli_args['webdriver.gecko.driver']
 	);
 
 	return settings;

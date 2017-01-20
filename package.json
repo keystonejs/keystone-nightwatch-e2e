@@ -1,6 +1,6 @@
 {
   "name": "keystone-nightwatch-e2e",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "Nightwatch end-to-end testing framework for KeystoneJS applications",
   "main": "index.js",
   "repository": {
@@ -34,7 +34,7 @@
     "keystone-utils": "^0.4.0",
     "lodash": "^4.15.0",
     "moment": "^2.14.1",
-    "nightwatch": "^0.9.8",
+    "nightwatch": "^0.9.12",
     "path": "^0.12.7",
     "sauce-connect-launcher": "^1.1.1",
     "selenium-server-standalone-jar": "^3.0.1"
