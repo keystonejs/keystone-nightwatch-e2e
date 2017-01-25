@@ -137,7 +137,7 @@ function runNightwatch (done) {
 							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests passed');
 						} else {
 							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests failed');
-							err = new Error('kne: nightwatch runner return error status code: 0');
+							err = new Error('kne: nightwatch runner returned an error status code');
 						}
 						cb(err);
 					});
