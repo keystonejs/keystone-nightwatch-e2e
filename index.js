@@ -132,12 +132,14 @@ function runNightwatch (done) {
 				 */
 				function (cb) {
 					Nightwatch.runner(argv, function (status) {
+						var err = null;
 						if (status) {
 							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests passed');
 						} else {
 							console.log([moment().format('HH:mm:ss:SSS')] + ' kne: tests failed');
+							err = new Error('kne: nightwatch runner returned an error status code');
 						}
-						cb();
+						cb(err);
 					});
 				},
 			], function (err) {
@@ -231,7 +233,6 @@ function start (options, callback) {
 			selenium_proc.kill('SIGKILL');
 		}
 		if (sauceConnectionRunning) {
-			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: something seems to have gone wrong, stopping sauce connect before travis shuts down');
 			stopSauceConnect(function () { callback && callback(err); });
 		} else {
 			callback && callback(err);
