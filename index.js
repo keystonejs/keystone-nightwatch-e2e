@@ -2,6 +2,7 @@ var _ = require('lodash');
 var path = require('path');
 var async = require('async');
 var moment = require('moment');
+var request = require('superagent');
 var Nightwatch = require('nightwatch/lib/index.js');
 var child_process = require('child_process');
 var selenium = require('selenium-server-standalone-jar');
@@ -208,6 +209,27 @@ function stopSauceConnect (done) {
 	}
 }
 
+// Function that checks if keystone is ready before starting testing
+function checkKeystoneReady (keystone, done) {
+	async.retry({
+		times: 10,
+		interval: 3000,
+	}, function (done, result) {
+		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: checking if KeystoneJS ready for request');
+		request
+			.get('http://' + keystone.get('host') + ':' + keystone.get('port') + '/keystone')
+			.end(done);
+	}, function (err, result) {
+		if (!err) {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: KeystoneJS Ready!');
+			done();
+		} else {
+			console.log([moment().format('HH:mm:ss:SSS')] + ' kne: KeystoneJS does not appear ready!');
+			done(err);
+		}
+	});
+}
+
 /*
 	Function that starts the nightwatch-based e2e framework service
 
@@ -219,10 +241,27 @@ function stopSauceConnect (done) {
 function start (options, callback) {
 	console.log([moment().format('HH:mm:ss:SSS')] + ' kne: starting...');
 
+	if (!options.keystone) {
+		var errMsg = 'kne: must pass a keystone instance';
+		console.error([moment().format('HH:mm:ss:SSS')] + ' ' + errMsg);
+		if (callback) {
+			callback(errMsg);
+		} else {
+			process.exit(1);
+		}
+	}
+
 	// add the keystone instance to the module exports so that the keystone-nightwatch-e2e library may use it
 	exports.keystone = options.keystone;
 
-	runNightwatch(function (err) {
+	async.series([
+		function (cb) {
+			checkKeystoneReady(options.keystone, cb);
+		},
+		function (cb) {
+			runNightwatch(cb);
+		},
+	], function (err) {
 		console.log([moment().format('HH:mm:ss:SSS')] + ' kne: finishing...');
 		if (err) {
 			console.error([moment().format('HH:mm:ss:SSS')] + ' kne: finished with error\n' + err);
