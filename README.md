@@ -45,15 +45,16 @@ NOTES on examples:
 
 
 ## Overview
-UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application as well as
-ensures that KeystoneJS itself has not regressed on the application functionality.  The tests use a real keystone
-application and should do so with as much available configuration as possible.  Please note that this is not a
-replacement for component-based unit testing, which attempt to do full regression coverage of all the operations 
-a particular application component is responsible for.  This framework uses the [nightwatchjs.org](http://nightwatchjs.org/)
-functional test framework.  Thus, if you will be contributing updates to this framework it is a good idea to have 
-some familiarity with its concepts.  If all you are interested in is writing your own e2e tests for your own
+UI/functional end-to-end tests ensure regression coverage of all aspects of a KeystoneJS application.  They also
+ensure that KeystoneJS itself has not regressed on the application functionality. The tests use a real keystone
+application and should do so with as much available configuration as possible. Please note that this is not a
+replacement for component-based unit testing. Unit testing attempts to do full regression coverage of all the
+operations a particular application component is responsible for without regards to its dependencies, which are
+usually mocked. This framework uses the [nightwatchjs.org](http://nightwatchjs.org/)
+functional test framework. Thus, if you will be contributing updates to this framework it is a good idea to have 
+some familiarity with its concepts. If all you are interested in is writing your own e2e tests for your own
 KeystoneJS application then you do not really need to become an expert in NightwatchJS but some familiarity with
-it is still greatly recommended since you will need to control the nightwatch configuration for your tests.  Below
+it is still greatly recommended since you will need to control the nightwatch configuration for your tests. Below
 we outline all you need to do to get started.
 
 
