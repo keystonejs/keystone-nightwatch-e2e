@@ -23,7 +23,7 @@
     "url": "https://github.com/keystonejs/keystone-nightwatch-e2e/issues"
   },
   "engines": {
-    "node": ">= 0.12.0",
+    "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
   "dependencies": {
@@ -34,17 +34,17 @@
     "keystone-utils": "^0.4.0",
     "lodash": "^4.15.0",
     "moment": "^2.14.1",
-    "nightwatch": "^0.9.12",
+    "nightwatch": "^0.9.21",
     "path": "^0.12.7",
     "sauce-connect-launcher": "^1.1.1",
     "selenium-server-standalone-jar": "^3.0.1",
-    "superagent": "3.4.1"
+    "superagent": "^3.8.3"
   },
   "devDependencies": {
     "docdash": "^0.4.0",
-    "eslint": "^3.4.0",
-    "eslint-config-keystone": "^2.4.0",
-    "eslint-plugin-react": "^6.2.0",
+    "eslint": "^3.10.0",
+    "eslint-config-keystone": "^3.0.0",
+    "eslint-plugin-react": "^6.6.0",
     "jsdoc": "^3.4.1"
   },
   "scripts": {
